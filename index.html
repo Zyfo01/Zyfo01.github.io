@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+      body {
+        background-color: rgb(30, 30, 30);
+      }
+      h1 {
+        text-align: center;
+        color: white;
+        font-family: "Montserrat";
+        font-size: 40px;
+      }
+      a {
+        display: block;
+        text-decoration: none;
+      }
+      a.hr {
+        margin-top: 25px;
+        margin-bottom: 50px;
+        height: 2px;
+        width: 96%;
+        margin: auto;
+        background-color: white;
+      }
+      a.proj {
+        width: 90%;
+        margin: auto;
+        text-align: left;
+        color: white;
+        font-family: "Montserrat";
+        font-weight: 500;
+        background-color: rgb(50, 50, 50);
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+        transition: 0.4s;
+        border: none;
+        cursor: pointer;
+      }
+      a.proj:hover {
+        box-shadow: 0 0 2px 2px white;
+      }
+      @media (min-width: 500px) {
+        h1 {
+          font-size: 60px;
+        }
+        a.proj {
+          font-size: 20px;
+          padding: 15px;
+        }
+      }
+      @media (min-width: 1000px) {
+        h1 {
+          font-size: 80px;
+        }
+        a.proj {
+          font-size: 25px;
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Projects</h1>
+    <a class="hr"></a>
+    <a class="proj" href="VisualCalculator/index.html"
+      >CSS Working Basic Calculator</a
+    >
+    <a class="proj" href="AdvancedCalculator/index.html">Advanced Calculator</a>
+    <a class="proj" href="FreeV-Bucks/index.html">Free V-Bucks</a>
+  </body>
+</html>

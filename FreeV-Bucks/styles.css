@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: rgb(30, 30, 30);
+  margin-top: 25px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+h1,
+p {
+  text-align: center;
+  color: white;
+  font-family: "Montserrat";
+}
+div.header {
+  width: 100%;
+  margin: auto;
+}
+div.hr {
+  margin: auto;
+  margin-top: 25px;
+  width: 95%;
+  height: 2px;
+  background-color: white;
+}
+P {
+  margin-top: 25px;
+}
+button {
+  font-size: 25px;
+  font-family: "Montserrat";
+  font-weight: 500;
+  background-color: transparent;
+  color: white;
+  border: 3px solid white;
+  border-radius: 20px;
+  padding: 6px;
+  transition: 0.4s;
+  cursor: pointer;
+}
+button:hover {
+  background-color: rgba(0, 255, 255, 0.8);
+  box-shadow: 0 0 5px 5px aqua;
+}
+div#default {
+  display: block;
+  text-align: center;
+}
+div#getStarted {
+  display: none;
+  text-align: center;
+}
+div#console {
+  display: none;
+  background: black;
+  height: 600px;
+  width: 90%;
+  margin: auto;
+  margin-top: 25px;
+  color: white;
+  padding: 10px;
+}
+input,
+select,
+option {
+  background: rgb(30, 30, 30);
+  border: 2px solid white;
+  padding: 5px;
+  font-family: "Montserrat";
+  font-size: 18px;
+  border-radius: 20px;
+  color: white;
+}
+input,
+select {
+  margin-top: 25px;
+}
