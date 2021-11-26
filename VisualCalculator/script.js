@@ -29,8 +29,7 @@ function display(x) {
             return;
         }
     }
-    if (document.getElementById("display").innerHTML == Math.round(eval(input) * 1000000) / 1000000 ||
-    document.getElementById("display").innerHTML == '0') {
+    if (document.getElementById("display").innerHTML == Math.round(eval(input) * 1000000) / 1000000) {
         document.getElementById("display").innerHTML = x;
     } else {
         document.getElementById("display").innerHTML += x;
