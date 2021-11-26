@@ -24,8 +24,13 @@ function display(x) {
             document.getElementById("display").innerHTML = 'Ans' + x;
             return;
         }
+        if (document.getElementById("display").innerHTML == '') {
+            document.getElementById("display").innerHTML = '0' + x;
+            return;
+        }
     }
-    if (document.getElementById("display").innerHTML == eval(input)) {
+    if (document.getElementById("display").innerHTML == eval(input) ||
+    document.getElementById("display").innerHTML == '0') {
         document.getElementById("display").innerHTML = x;
     } else {
         document.getElementById("display").innerHTML += x;
