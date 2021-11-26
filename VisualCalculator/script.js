@@ -1,16 +1,17 @@
 var input = null;
-
+var Ans = null;
 function solve() {
     input = document.getElementById("display").innerHTML;
     document.getElementById("display").innerHTML = "";
     setTimeout(function(){
         try {
             document.getElementById("display").innerHTML = eval(input);
+            Ans = eval(input);
         }
         catch {
             document.getElementById("display").innerHTML = 'ERROR';
             setTimeout(function() {
-                alert('Please do not use parentheses as multiplication.');
+                alert('An error ocurred. Common errors can include: Using parentheses as multiplication, incorrect syntax, and operations on their own.');
                 document.location.href = "";
             }, 100);
         }
@@ -18,6 +19,12 @@ function solve() {
 }
 
 function display(x) {
+    if (x == ' + ' || x == ' - ' || x == ' * ' || x == ' / ') {
+        if (document.getElementById("display").innerHTML == eval(input)) {
+            document.getElementById("display").innerHTML = 'Ans' + x;
+            return;
+        }
+    }
     if (document.getElementById("display").innerHTML == eval(input)) {
         document.getElementById("display").innerHTML = x;
     } else {
