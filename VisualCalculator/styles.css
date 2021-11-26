@@ -95,3 +95,6 @@ div.button:active {
 div.thick {
   width: 70px;
 }
+div.thin {
+  width: 30px;
+}
