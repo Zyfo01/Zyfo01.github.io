@@ -5,8 +5,8 @@ function solve() {
     document.getElementById("display").innerHTML = "";
     setTimeout(function(){
         try {
-            document.getElementById("display").innerHTML = eval(input);
-            Ans = eval(input);
+            document.getElementById("display").innerHTML = Math.round(eval(input) * 1000000) / 1000000;
+            Ans = Math.round(eval(input) * 1000000) / 1000000;
         }
         catch {
             document.getElementById("display").innerHTML = 'ERROR';
@@ -20,7 +20,7 @@ function solve() {
 
 function display(x) {
     if (x == ' + ' || x == ' - ' || x == ' * ' || x == ' / ') {
-        if (document.getElementById("display").innerHTML == eval(input)) {
+        if (document.getElementById("display").innerHTML == Math.round(eval(input) * 1000000) / 1000000) {
             document.getElementById("display").innerHTML = 'Ans' + x;
             return;
         }
@@ -29,7 +29,7 @@ function display(x) {
             return;
         }
     }
-    if (document.getElementById("display").innerHTML == eval(input) ||
+    if (document.getElementById("display").innerHTML == Math.round(eval(input) * 1000000) / 1000000 ||
     document.getElementById("display").innerHTML == '0') {
         document.getElementById("display").innerHTML = x;
     } else {
