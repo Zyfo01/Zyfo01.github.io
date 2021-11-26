@@ -56,12 +56,12 @@ h1#display {
   width: 230px;
   height: 60px;
   padding-top: 25px;
-  background-color: rgb(63, 68, 63);
+  background-color: rgb(57, 66, 57);
   border-radius: 3px;
-  border-top: 3px solid rgb(79, 90, 79);
-  border-left: 3px solid rgb(66, 75, 66);
-  border-bottom: 3px solid rgb(38, 42, 38);
-  border-right: 3px solid rgb(33, 37, 33);
+  border-top: 3px solid rgb(69, 85, 69);
+  border-left: 3px solid rgb(59, 73, 59);
+  border-bottom: 3px solid rgb(35, 42, 35);
+  border-right: 3px solid rgb(29, 36, 29);
   color: rgba(0, 0, 0, 0.6);
   text-align: right;
 }
