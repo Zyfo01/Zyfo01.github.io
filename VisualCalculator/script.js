@@ -1,5 +1,6 @@
 var input = null;
 var Ans = null;
+var darkMode = false;
 function solve() {
     input = document.getElementById("display").innerHTML;
     document.getElementById("display").innerHTML = "";
@@ -43,4 +44,35 @@ function memClear() {
 }
 function clearDisplay() {
     document.getElementById("display").innerHTML = "";
+}
+
+function modeSwitch() {
+    darkMode = !darkMode;
+    if (darkMode == true) {
+        document.getElementById("body").style.backgroundColor = "rgb(30,30,30)";
+        document.getElementById("modeSwitch").style.borderColor = "rgb(200,200,200)";
+        document.getElementById("modeSwitch").style.color = "rgb(200,200,200)";
+        document.getElementById("modeSwitchBubble").style.backgroundColor = "rgb(200,200,200)";
+    } else if (darkMode == false) {
+        document.getElementById("body").style.backgroundColor = "rgb(200, 200, 200)";
+        document.getElementById("modeSwitch").style.borderColor = "rgb(30,30,30)";
+        document.getElementById("modeSwitch").style.color = "rgb(30,30,30)";
+        document.getElementById("modeSwitchBubble").style.backgroundColor = "rgb(30,30,30)";
+        
+    }
+}
+
+function modeHover() {
+    if (darkMode == true) {
+        document.getElementById("modeSwitch").style.color = "rgb(200,200,200)";
+        document.getElementById("modeSwitch").style.width = "70px";
+    } else if (darkMode == false) {
+        document.getElementById("modeSwitch").style.color = "rgb(30,30,30)";
+        document.getElementById("modeSwitch").style.width = "70px";
+        
+    }
+}
+function modeUnHover() {
+    document.getElementById("modeSwitch").style.color = "transparent";
+    document.getElementById("modeSwitch").style.width = "20px";
 }
