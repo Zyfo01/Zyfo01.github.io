@@ -8,7 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Visual Calculator</title>
   </head>
-  <body>
+  <body id="body">
+    <div id="modeSwitchBubble"></div>
+    <div
+      id="modeSwitch"
+      onclick="modeSwitch()"
+      onmouseover="modeHover()"
+      onmouseleave="modeUnHover()"
+    >
+      <span text>Mode</span>
+    </div>
     <div class="calculator">
       <div class="buttons">
         <div class="body">
