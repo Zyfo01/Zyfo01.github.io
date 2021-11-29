@@ -131,3 +131,15 @@ span[text] {
   left: 25px;
   top: 1px;
 }
+@media (max-width: 500px) {
+  body {
+    position: relative;
+    top: 500px;
+  }
+  div#modeSwitch {
+    top: -495px;
+  }
+  div#modeSwitchBubble {
+    top: -490px;
+  }
+}
