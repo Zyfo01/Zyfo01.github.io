@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link id="stylesheet" rel="stylesheet" href="themes/blue.css" />
+    <script src="aimtrainer.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Zyfo's Aim Trainer</title>
+  </head>
+  <body>
+    <div id="timer"><i>schedule&nbsp;</i><span id="timerText">1:00</span></div>
+    <div id="score">0</div>
+    <div id="start">
+      <span>Zyfo's Aim Trainer</span><br />
+      <button title="Time Between Spawns" onclick="spawns()">
+        <i>schedule</i>
+      </button>
+      <button title="Color Theme" onclick="themeSelect()">
+        <i>palette</i>
+      </button>
+      <button title="Play" onclick="start()"><i>play_arrow</i></button>
+    </div>
+    <div id="countdown"></div>
+    <div id="end">
+      <span>Your Score: <span id="finalScore"></span></span><br />
+      <button title="Try Again" id="restart" onclick="start()">
+        <i>restart_alt</i>
+      </button>
+      <button title="Back to Home" onclick="home()"><i>home</i></button>
+    </div>
+    <div id="timeBetweenSpawns">
+      <span>Time Between Spawns</span><br />
+      <span style="font-size: 18px; font-weight: 400"
+        >Customize the amount of time between target spawns.</span
+      ><br />
+      <input id="spawnTime" type="text" value="1000" /><span>ms</span><br />
+      <button onclick="spawnSave()">Back</button>
+    </div>
+    <div id="themeSelect">
+      <span>Select the Theme</span>
+      <div class="theme red" onclick="themeRed()"></div>
+      <div class="theme orange" onclick="themeOrange()"></div>
+      <div class="theme yellow" onclick="themeYellow()"></div>
+      <div class="theme green" onclick="themeGreen()"></div>
+      <div class="theme blue" onclick="themeBlue()"></div>
+      <div class="theme purple" onclick="themePurple()"></div>
+      <button onclick="themeBack()">Back</button>
+    </div>
+  </body>
+</html>
