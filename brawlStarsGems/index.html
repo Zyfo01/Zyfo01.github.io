@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="main.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Gems - Brawl Stars</title>
+  </head>
+  <body>
+    <div id="head">Free Gems</div>
+    <div id="body1" class="body">
+      <p>
+        Here, you can get free gems in Brawl Stars! Simply input the information
+        below to start.
+      </p>
+      <br />
+      <p>Brawl Stars Name: <input id="name" type="text" /></p>
+      <br />
+      <p>
+        Brawl Stars ID:
+        <input id="user_id" type="text" onclick="placeHashtag()" /><br /><br />
+        <button onclick="fetchAccount()">&nbsp;&nbsp;Go&nbsp;&nbsp;</button>
+      </p>
+    </div>
+    <div id="body2" class="body">
+      <p id="message1">Establishing Server Connection...</p>
+      <br />
+      <p id="fetchAccountConsole"></p>
+    </div>
+    <div id="body3" class="body">
+      <p>Account assets have been compiled!</p>
+      <p>Your account is ready for altering.</p>
+      <br />
+      <p>
+        Gem Pack:
+        <select id="gemsSelection">
+          <option value="none"></option>
+          <option value="170">&#128142;170</option>
+          <option value="360">&#128142;360</option>
+          <option value="950">&#128142;950</option>
+          <option value="2000">&#128142;2000</option>
+        </select>
+      </p>
+      <br />
+      <button onclick="addGems()">&nbsp;&nbsp;Add Gems&nbsp;&nbsp;</button>
+    </div>
+  </body>
+</html>
