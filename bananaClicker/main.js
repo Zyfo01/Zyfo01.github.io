@@ -25,7 +25,7 @@ setInterval(function () {
     document.getElementById("upgCost").innerHTML = upgCost;
     document.getElementById("workerCost").innerHTML = workerCost;
     document.getElementById("superWorkerCost").innerHTML = superWorkerCost;
-    document.getElementById("farmCost").innerHTML = farmCost / 1000 + 'k';
+    document.getElementById("farmCost").innerHTML = farmCost / 1000 + "k";
     document.getElementById("currentMultiplier").innerHTML = multiplier;
     document.getElementById("nextMultiplier").innerHTML = multiplier + 1;
     document.getElementById("currentWorkers").innerHTML = workers;
@@ -47,7 +47,7 @@ setInterval(function () {
       expPriceSuperWorker++;
     }
 
-    if (farms % 5 == 0 && expPriceFarm != farms / 5) {
+    if (farms % 3 == 0 && expPriceFarm != farms / 3) {
       expPriceFarm++;
     }
   }
@@ -55,7 +55,8 @@ setInterval(function () {
 
 setInterval(function () {
   if (paused == false) {
-    clicks += (farms * 750 + superWorkers * 10 + workers) * Math.ceil(multiplier / 5);
+    clicks +=
+      (farms * 750 + superWorkers * 10 + workers) * Math.ceil(multiplier / 5);
   }
 }, 500);
 
@@ -128,8 +129,8 @@ function pause() {
   }
 }
 
-function details() {
+function help() {
   alert(
-    "Click the banana to gain points/bananas. Buy upgrades from the shop with the bananas you earn. Purchasing a multiplier adds 1 to your multiplier, and it multiplies each click's points by that amount, but is only 1/5 as strong on workers (although not allowing decimals or <1)."
+    "Click on the banana to gain more bananas. Buy upgrades from the shop. Prices have slight exponential increases as you buy more items. The multiplier is fully effective on clicks, while much weaker on workers and farms."
   );
 }
