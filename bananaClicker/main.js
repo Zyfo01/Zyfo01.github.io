@@ -88,7 +88,7 @@ setInterval(function () {
 setInterval(function () {
   if (paused == false) {
     if (difficulty == 1) {
-      clicks += (farms * 200 + superWorkers * 10) * multiplier;
+      clicks += (farms * 200 + superWorkers * 10 + workers) * multiplier;
     } else if (difficulty == 2) {
       clicks +=
         (farms * 200 + superWorkers * 10 + workers) * Math.ceil(multiplier / 5);
