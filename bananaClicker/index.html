@@ -13,6 +13,22 @@
     <div id="help" title="(Question Mark for Retarded People)" onclick="help()">
       ?
     </div>
+    <div id="settings" title="Settings" onclick="settings()">settings</div>
+    <div id="settingsMenu">
+      <h1>SETTINGS</h1>
+      <div id="settingsDivider"></div>
+      <h3>DIFFICULTY:</h3>
+      <div id="difficultySelect">
+        <button id="easy" onclick="easy()">Easy</button>
+        <button id="normal" onclick="normal()">Normal</button>
+        <button id="hard" onclick="hard()">Hard</button>
+      </div>
+      <h3 id="areYouSure">
+        Requires restart. Press [ENTER] to Confirm.
+      </h3>
+      <button id="save" onclick="areYouSure()"><i>done</i></button>
+      <button id="cancel" onclick="closeSettings()"><i>close</i></button>
+    </div>
     <div id="centerAlignTool"></div>
     <h1 id="header">BANANA CLICKER</h1>
     <div id="divider"></div>
@@ -29,43 +45,27 @@
     <div id="shop">
       <h1 id="shopHeader">SHOP</h1>
       <span id="items">
-        <button
-          id="upgrade"
-          onclick="upgrade()"
-          title="Every click gives a multiplied amount of bananas"
-        >
+        <button id="upgrade" onclick="upgrade()">
           Multiplier <br /><span id="currentMultiplier">1</span>x
           <i>arrow_forward</i> <span id="nextMultiplier">2</span>x<br /><span
             class="price"
             >&#127820;<span id="upgCost">100</span>&nbsp;</span
           >
         </button>
-        <button
-          id="worker"
-          onclick="newWorker()"
-          title="Workers collect 2 bananas/sec (multiplier is much weaker)"
-        >
+        <button id="worker" onclick="newWorker()">
           Workers <br /><span id="currentWorkers">0</span> <i>arrow_forward</i>
           <span id="nextWorker">1</span><br /><span class="price"
             >&#127820;<span id="workerCost">200</span>&nbsp;</span
           >
         </button>
-        <button
-          id="superWorker"
-          onclick="newSuperWorker()"
-          title="Super Workers collect 20 bananas/sec (multiplier is much weaker)"
-        >
+        <button id="superWorker" onclick="newSuperWorker()">
           Super Workers <br /><span id="currentSuperWorkers">0</span>
           <i>arrow_forward</i> <span id="nextSuperWorker">1</span><br /><span
             class="price"
             >&#127820;<span id="superWorkerCost">1000</span>&nbsp;</span
           >
         </button>
-        <button
-          id="farm"
-          onclick="newFarm()"
-          title="Farms collect 750 bananas/sec (multiplier is much weaker)"
-        >
+        <button id="farm" onclick="newFarm()">
           Farms <br /><span id="currentFarms">0</span> <i>arrow_forward</i>
           <span id="nextFarm">1</span><br /><span class="price"
             >&#127820;<span id="farmCost">60k</span>&nbsp;</span
