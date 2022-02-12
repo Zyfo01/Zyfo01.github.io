@@ -2,13 +2,16 @@ var clicks = 0;
 var upgCost = 100;
 var workerCost = 200;
 var superWorkerCost = 1000;
+var farmCost = 60000;
 var multiplier = 1;
 var workers = 0;
 var superWorkers = 0;
+var farms = 0;
 var paused = false;
 var expPriceMultiplier = 0;
 var expPriceWorker = 0;
 var expPriceSuperWorker = 0;
+var expPriceFarm = 0;
 
 function onClick() {
   if (paused == false) {
@@ -22,12 +25,15 @@ setInterval(function () {
     document.getElementById("upgCost").innerHTML = upgCost;
     document.getElementById("workerCost").innerHTML = workerCost;
     document.getElementById("superWorkerCost").innerHTML = superWorkerCost;
+    document.getElementById("farmCost").innerHTML = farmCost / 1000 + 'k';
     document.getElementById("currentMultiplier").innerHTML = multiplier;
     document.getElementById("nextMultiplier").innerHTML = multiplier + 1;
     document.getElementById("currentWorkers").innerHTML = workers;
     document.getElementById("nextWorker").innerHTML = workers + 1;
     document.getElementById("currentSuperWorkers").innerHTML = superWorkers;
     document.getElementById("nextSuperWorker").innerHTML = superWorkers + 1;
+    document.getElementById("currentFarms").innerHTML = farms;
+    document.getElementById("nextFarm").innerHTML = farms + 1;
 
     if (multiplier % 10 == 0 && expPriceMultiplier != multiplier / 10) {
       expPriceMultiplier++;
@@ -40,12 +46,16 @@ setInterval(function () {
     if (superWorkers % 5 == 0 && expPriceSuperWorker != superWorkers / 5) {
       expPriceSuperWorker++;
     }
+
+    if (farms % 5 == 0 && expPriceFarm != farms / 5) {
+      expPriceFarm++;
+    }
   }
 }, 0);
 
 setInterval(function () {
   if (paused == false) {
-    clicks += (superWorkers * 10 + workers) * Math.ceil(multiplier / 5);
+    clicks += (farms * 750 + superWorkers * 10 + workers) * Math.ceil(multiplier / 5);
   }
 }, 500);
 
@@ -66,7 +76,7 @@ function newWorker() {
     if (clicks >= workerCost) {
       clicks -= workerCost;
       workers++;
-      workerCost += 100 * (1 + expPriceMultiplier / 10);
+      workerCost += 100 * (1 + expPriceWorker / 10);
     } else {
       notEnoughBananas();
     }
@@ -78,7 +88,19 @@ function newSuperWorker() {
     if (clicks >= superWorkerCost) {
       clicks -= superWorkerCost;
       superWorkers++;
-      superWorkerCost += 1000 * (1 + expPriceMultiplier / 10);
+      superWorkerCost += 1000 * (1 + expPriceSuperWorker / 10);
+    } else {
+      notEnoughBananas();
+    }
+  }
+}
+
+function newFarm() {
+  if (paused == false) {
+    if (clicks >= farmCost) {
+      clicks -= farmCost;
+      farms++;
+      farmCost += 140000 * (1 + expPriceFarm / 10);
     } else {
       notEnoughBananas();
     }
