@@ -6,6 +6,9 @@ var multiplier = 1;
 var workers = 0;
 var superWorkers = 0;
 var paused = false;
+var expPriceMultiplier = 0;
+var expPriceWorker = 0;
+var expPriceSuperWorker = 0;
 
 function onClick() {
   if (paused == false) {
@@ -25,6 +28,18 @@ setInterval(function () {
     document.getElementById("nextWorker").innerHTML = workers + 1;
     document.getElementById("currentSuperWorkers").innerHTML = superWorkers;
     document.getElementById("nextSuperWorker").innerHTML = superWorkers + 1;
+
+    if (multiplier % 10 == 0 && expPriceMultiplier != multiplier / 10) {
+      expPriceMultiplier++;
+    }
+
+    if (workers % 7 == 0 && expPriceWorker != workers / 7) {
+      expPriceWorker++;
+    }
+
+    if (superWorkers % 5 == 0 && expPriceSuperWorker != superWorkers / 5) {
+      expPriceSuperWorker++;
+    }
   }
 }, 0);
 
@@ -39,7 +54,7 @@ function upgrade() {
     if (clicks >= upgCost) {
       clicks -= upgCost;
       multiplier++;
-      upgCost += 50;
+      upgCost += 50 * (1 + expPriceMultiplier / 10);
     } else {
       notEnoughBananas();
     }
@@ -51,7 +66,7 @@ function newWorker() {
     if (clicks >= workerCost) {
       clicks -= workerCost;
       workers++;
-      workerCost += 100;
+      workerCost += 100 * (1 + expPriceMultiplier / 10);
     } else {
       notEnoughBananas();
     }
@@ -63,7 +78,7 @@ function newSuperWorker() {
     if (clicks >= superWorkerCost) {
       clicks -= superWorkerCost;
       superWorkers++;
-      superWorkerCost += 1000;
+      superWorkerCost += 1000 * (1 + expPriceMultiplier / 10);
     } else {
       notEnoughBananas();
     }
@@ -85,24 +100,14 @@ function pause() {
   if (paused == false) {
     paused = true;
     document.getElementById("pauseIcon").innerHTML = "play_arrow";
-    document.getElementById("items").style.display = "none";
-    document.getElementById("shopHeader").style.display = "none";
-    document.getElementById("divider3").style.display = "none";
-    document.getElementById("banana").style.display = "none";
-    document.getElementById("clickCounter").style.display = "none";
-    document.getElementById("pauseMenu").style.display = "block";
   } else {
     paused = false;
     document.getElementById("pauseIcon").innerHTML = "pause";
-    document.getElementById("items").style.display = "block";
-    document.getElementById("shopHeader").style.display = "block";
-    document.getElementById("divider3").style.display = "block";
-    document.getElementById("banana").style.display = "block";
-    document.getElementById("clickCounter").style.display = "block";
-    document.getElementById("pauseMenu").style.display = "none";
   }
 }
 
 function details() {
-  alert("Click the banana to gain points/bananas. Buy upgrades from the shop with the bananas you earn. Purchasing a multiplier adds 1 to your multiplier, and it multiplies each click's points by that amount, but is only 1/5 as strong on workers (although not allowing decimals or <1).")
+  alert(
+    "Click the banana to gain points/bananas. Buy upgrades from the shop with the bananas you earn. Purchasing a multiplier adds 1 to your multiplier, and it multiplies each click's points by that amount, but is only 1/5 as strong on workers (although not allowing decimals or <1)."
+  );
 }
