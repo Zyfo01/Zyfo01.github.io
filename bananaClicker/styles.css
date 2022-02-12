@@ -1,6 +1,10 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
+* {
+  margin-left: 0;
+  margin-right: 0;
+}
 body {
   background-color: rgb(30, 30, 30);
   font-size: 25px;
@@ -131,9 +135,83 @@ button#pause {
   text-align: center;
   border-radius: 50%;
   top: 7px;
-  left: 5px;
+  left: 10px;
   font-size: 25px;
   cursor: pointer;
+}
+#settings {
+  position: absolute;
+  font-family: "Material Icons";
+  color: orange;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 50%;
+  width: auto;
+  height: auto;
+  top: 7px;
+  right: 15px;
+  font-size: 40px;
+  cursor: pointer;
+}
+#settingsMenu {
+  position: absolute;
+  top: 200px;
+  width: 60%;
+  height: 520px;
+  left: 50%;
+  transform: translate(-50%);
+  border: 5px solid rgb(60, 60, 60);
+  border-radius: 20px;
+  text-align: center;
+  display: none;
+}
+#settingsDivider {
+  position: relative;
+  height: 6px;
+  width: 95%;
+  background: orange;
+  left: 50%;
+  transform: translate(-50%);
+}
+#difficultySelect {
+  display: flex;
+  position: absolute;
+  top: 210px;
+  left: 50%;
+  transform: translate(-50%);
+}
+#easy,
+#normal,
+#hard {
+  width: 120px;
+  margin-left: -5px;
+  margin-right: 0;
+  border-radius: 0;
+  font-size: 20px;
+  text-align: center;
+  padding: 5px;
+}
+#easy {
+  border-radius: 10px 0 0 10px;
+}
+#hard {
+  border-radius: 0 10px 10px 0;
+}
+#normal {
+  background: orange;
+  color: rgb(30, 30, 30);
+}
+#save,
+#cancel {
+  position: relative;
+  width: 90px;
+  height: 75px;
+  top: 180px;
+}
+#areYouSure {
+  position: relative;
+  top: 140px;
+  display: none;
 }
 @media (max-width: 800px) {
   #header {
@@ -213,5 +291,8 @@ button#pause {
     height: 20px;
     border: 2px solid orange;
     font-weight: 400;
+  }
+  #settings {
+    font-size: 25px;
   }
 }
