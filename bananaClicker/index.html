@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="styles.css" />
-    <link rel="icon" href="banana.png">
+    <link rel="icon" href="banana.png" />
     <script src="main.js"></script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -10,6 +10,9 @@
     <title>Banana Clicker</title>
   </head>
   <body>
+    <div id="help" title="(Question Mark for Retarded People)" onclick="help()">
+      ?
+    </div>
     <div id="centerAlignTool"></div>
     <h1 id="header">BANANA CLICKER</h1>
     <div id="divider"></div>
@@ -63,9 +66,8 @@
           onclick="newFarm()"
           title="Farms collect 750 bananas/sec (multiplier is much weaker)"
         >
-          Farms <br /><span id="currentFarms">0</span>
-          <i>arrow_forward</i> <span id="nextFarm">1</span><br /><span
-            class="price"
+          Farms <br /><span id="currentFarms">0</span> <i>arrow_forward</i>
+          <span id="nextFarm">1</span><br /><span class="price"
             >&#127820;<span id="farmCost">60k</span>&nbsp;</span
           >
         </button>
