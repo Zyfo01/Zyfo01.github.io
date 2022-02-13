@@ -176,13 +176,13 @@ setInterval(function () {
       a.banana2 = true;
     }
     if (clicks >= 1000000 && a.banana3 == false) {
-      ach("Reach 1000 Bananas", "+2 Farms");
+      ach("Reach 1M Bananas", "+2 Farms");
       freeFarm();
       freeFarm();
       a.banana3 = true;
     }
     if (clicks >= 1000000000 && a.banana4 == false) {
-      ach("Reach 1000 Bananas", "+20 Farms");
+      ach("Reach 1B Bananas", "+20 Farms");
       freeFarm();
       freeFarm();
       freeFarm();
@@ -398,7 +398,7 @@ function newSuperWorker() {
 function freeSuperWorker() {
   if (paused == false) {
     superWorkers++;
-    upgCost += 1000 * (1 + expPriceMultiplier / 10);
+    superWorkerCost += 1000 * (1 + expPriceMultiplier / 10);
   }
 }
 
@@ -418,7 +418,7 @@ function newFarm() {
 function freeFarm() {
   if (paused == false) {
     farms++;
-    upgCost += 150000 * (1 + expPriceMultiplier / 10);
+    farmCost += 150000 * (1 + expPriceMultiplier / 10);
   }
 }
 
@@ -586,6 +586,26 @@ function saveSettings() {
   expPriceSuperWorker = 0;
   expPriceFarm = 0;
   settingsOpen = false;
+  a.banana1 = false;
+  a.banana2 = false;
+  a.banana3 = false;
+  a.banana4 = false;
+  a.multiplier1 = false;
+  a.multiplier2 = false;
+  a.multiplier3 = false;
+  a.multiplier4 = false;
+  a.workers1 = false;
+  a.workers2 = false;
+  a.workers3 = false;
+  a.workers4 = false;
+  a.superWorkers1 = false;
+  a.superWorkers2 = false;
+  a.superWorkers3 = false;
+  a.superWorkers4 = false;
+  a.farms1 = false;
+  a.farms2 = false;
+  a.farms3 = false;
+  a.farms4 = false;
 }
 
 function closeSettings() {
