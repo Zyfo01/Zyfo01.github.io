@@ -1,6 +1,6 @@
 document.addEventListener("keypress", keyPressed);
 
-var clicks = 0;
+var clicks = 96785985567345768;
 var upgCost = 100;
 var workerCost = 200;
 var superWorkerCost = 1000;
@@ -23,21 +23,34 @@ function onClick() {
   }
 }
 
+function abbreviate(x) {
+  var y;
+  if (x < 10000) {
+    y = x;
+  } else if (x >= 10000 && x < 1000000) {
+    y = (Math.round(x / 10) * 10) / 1000 + "K";
+  } else if (x >= 1000000 && x < 1000000000) {
+    y = (Math.round(x / 10000) * 10000) / 1000000 + "M";
+  } else if (x >= 1000000000 && x < 1000000000000) {
+    y = (Math.round(x / 10000000) * 10000000) / 1000000000 + "B";
+  } else if (x >= 1000000000000 && x < 1000000000000000) {
+    y = (Math.round(x / 10000000000) * 10000000000) / 1000000000000 + "t";
+  } else if (x >= 1000000000000000) {
+    y =
+      (Math.round(x / 10000000000000) * 10000000000000) / 1000000000000000 +
+      "q";
+  }
+  return y;
+}
+
 setInterval(function () {
   if (paused == false) {
-    document.getElementById("clicks").innerHTML = clicks;
-    document.getElementById("upgCost").innerHTML = upgCost;
-    document.getElementById("workerCost").innerHTML = workerCost;
-    document.getElementById("superWorkerCost").innerHTML = superWorkerCost;
-    if (farmCost < 1000000) {
-      document.getElementById("farmCost").innerHTML = farmCost / 1000 + "k";
-    } else if (farmCost >= 1000000 && farmCost < 1000000000) {
-      document.getElementById("farmCost").innerHTML =
-        Math.round(farmCost * 100) / 100 / 1000000 + "m";
-    } else if (farmCost >= 1000000000) {
-      document.getElementById("farmCost").innerHTML =
-        Math.round(farmCost * 100) / 100 / 1000000000 + "B";
-    }
+    document.getElementById("clicks").innerHTML = abbreviate(clicks);
+    document.getElementById("upgCost").innerHTML = abbreviate(upgCost);
+    document.getElementById("workerCost").innerHTML = abbreviate(workerCost);
+    document.getElementById("superWorkerCost").innerHTML =
+      abbreviate(superWorkerCost);
+    document.getElementById("farmCost").innerHTML = abbreviate(farmCost);
     document.getElementById("currentMultiplier").innerHTML = multiplier;
     document.getElementById("nextMultiplier").innerHTML = multiplier + 1;
     document.getElementById("currentWorkers").innerHTML = workers;
@@ -104,6 +117,7 @@ function upgrade() {
     if (clicks >= upgCost) {
       clicks -= upgCost;
       multiplier++;
+      spendAnimation(upgCost);
       upgCost += 50 * (1 + expPriceMultiplier / 10);
     } else {
       notEnoughBananas();
@@ -116,6 +130,7 @@ function newWorker() {
     if (clicks >= workerCost) {
       clicks -= workerCost;
       workers++;
+      spendAnimation(workerCost);
       workerCost += 100 * (1 + expPriceWorker / 10);
     } else {
       notEnoughBananas();
@@ -128,6 +143,7 @@ function newSuperWorker() {
     if (clicks >= superWorkerCost) {
       clicks -= superWorkerCost;
       superWorkers++;
+      spendAnimation(superWorkerCost);
       superWorkerCost += 1000 * (1 + expPriceSuperWorker / 10);
     } else {
       notEnoughBananas();
@@ -140,11 +156,46 @@ function newFarm() {
     if (clicks >= farmCost) {
       clicks -= farmCost;
       farms++;
+      spendAnimation(farmCost);
       farmCost += 150000 * (1 + expPriceFarm / 10);
     } else {
       notEnoughBananas();
     }
   }
+}
+
+function spendAnimation(price) {
+  price = abbreviate(price);
+  var elem = document.createElement("H3");
+  if (price < 10000) {
+    elem.innerHTML = price;
+  } else if (price >= 10000 && price < 1000000) {
+    elem.innerHTML = Math.round(price * 10) / 10 / 1000 + "k";
+  } else if (price >= 1000000 && price < 1000000000) {
+    elem.innerHTML = Math.round(price * 100) / 100 / 1000000 + "m";
+  } else if (price >= 1000000000) {
+    elem.innerHTML = Math.round(price * 100) / 100000 / 1000000000 + "B";
+  }
+  elem.innerHTML = "-" + price.toString();
+  elem.style.color = "red";
+  elem.style.position = "absolute";
+  elem.style.left = "50%";
+  elem.style.transform = "translate(-50%)";
+  elem.style.top = "455px";
+  elem.style.fontSize = "40px";
+  document.body.appendChild(elem);
+  var elemTop = 455;
+  var elemOpacity = 1;
+  var interval = setInterval(function () {
+    elemTop -= 0.1;
+    elemOpacity -= 0.005;
+    elem.style.top = elemTop.toString() + "px";
+    elem.style.opacity = elemOpacity.toString();
+  });
+  setTimeout(function () {
+    clearInterval(interval);
+    document.body.removeChild(elem);
+  }, 1000);
 }
 
 function notEnoughBananas() {
