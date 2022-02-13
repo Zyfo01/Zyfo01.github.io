@@ -1,6 +1,6 @@
 document.addEventListener("keypress", keyPressed);
 
-var clicks = 96785985567345768;
+var clicks = 0;
 var upgCost = 100;
 var workerCost = 200;
 var superWorkerCost = 1000;
