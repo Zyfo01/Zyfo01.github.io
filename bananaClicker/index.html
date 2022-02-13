@@ -19,15 +19,15 @@
       <div id="settingsDivider"></div>
       <h3>DIFFICULTY:</h3>
       <div id="difficultySelect">
-        <button id="easy" onclick="easy()">Easy</button>
-        <button id="normal" onclick="normal()">Normal</button>
-        <button id="hard" onclick="hard()">Hard</button>
+        <button id="easy" onclick="easy()" title="No exponential price increase, multiplier is definite">Easy</button>
+        <button id="normal" onclick="normal()" title="Slight exponential price increase, multiplier is much weaker on workers">Normal</button>
+        <button id="hard" onclick="hard()" title="Significant exponential price increase, multiplier is very weak on workers">Hard</button>
       </div>
       <h3 id="areYouSure">
         Requires restart. Press [ENTER] to Confirm.
       </h3>
-      <button id="save" onclick="areYouSure()"><i>done</i></button>
-      <button id="cancel" onclick="closeSettings()"><i>close</i></button>
+      <button id="save" onclick="areYouSure()" title="Save"><i>done</i></button>
+      <button id="cancel" onclick="closeSettings()" title="Close"><i>close</i></button>
     </div>
     <div id="centerAlignTool"></div>
     <h1 id="header">BANANA CLICKER</h1>
