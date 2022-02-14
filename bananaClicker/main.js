@@ -16,6 +16,8 @@ var expPriceSuperWorker = 0;
 var expPriceFarm = 0;
 var settingsOpen = false;
 var difficulty = 2;
+var achievements = 0;
+var achTrackerOpen = false;
 
 const a = {
   banana1: false,
@@ -125,6 +127,7 @@ setInterval(function () {
     document.getElementById("nextSuperWorker").innerHTML = superWorkers + 1;
     document.getElementById("currentFarms").innerHTML = farms;
     document.getElementById("nextFarm").innerHTML = farms + 1;
+    document.getElementById("achCount").innerHTML = achievements;
 
     if (difficulty == 2) {
       if (multiplier % 10 == 0 && expPriceMultiplier != multiplier / 10) {
@@ -167,6 +170,7 @@ setInterval(function () {
       freeUpgrade();
       freeUpgrade();
       a.banana1 = true;
+      achievements++;
     }
     if (clicks >= 100000 && a.banana2 == false) {
       ach("Reach 100K Bananas", "+3 Super Workers");
@@ -174,12 +178,14 @@ setInterval(function () {
       freeSuperWorker();
       freeSuperWorker();
       a.banana2 = true;
+      achievements++;
     }
     if (clicks >= 1000000 && a.banana3 == false) {
       ach("Reach 1M Bananas", "+2 Farms");
       freeFarm();
       freeFarm();
       a.banana3 = true;
+      achievements++;
     }
     if (clicks >= 1000000000 && a.banana4 == false) {
       ach("Reach 1B Bananas", "+20 Farms");
@@ -204,34 +210,40 @@ setInterval(function () {
       freeFarm();
       freeFarm();
       a.banana4 = true;
+      achievements++;
     }
     if (multiplier >= 20 && a.multiplier1 == false) {
       ach("Reach 20x Multiplier", "+5K Bananas");
       clicks += 5000;
       a.multiplier1 = true;
+      achievements++;
     }
     if (multiplier >= 50 && a.multiplier2 == false) {
-      ach("Reach 50x Multiplier", "+5 Farms");
+      ach("Reach 50x Multiplier", "+3 Farms");
       freeFarm();
       freeFarm();
       freeFarm();
       a.multiplier2 = true;
+      achievements++;
     }
     if (multiplier >= 100 && a.multiplier3 == false) {
       ach("Reach 100x Multiplier", "+750K Bananas");
       clicks += 750000;
       a.multiplier3 = true;
+      achievements++;
     }
     if (multiplier >= 750 && a.multiplier4 == false) {
       ach("Reach 750x Multiplier", "+10M Bananas");
       clicks += 10000000;
       a.multiplier4 = true;
+      achievements++;
     }
     if (workers >= 1 && a.workers1 == false) {
-      ach("Buy a Worker", "+2x Multiplier");
+      ach("Obtain a Worker", "+2x Multiplier");
       freeUpgrade();
       freeUpgrade();
       a.workers1 = true;
+      achievements++;
     }
     if (workers >= 10 && a.workers2 == false) {
       ach("Obtain 10 Workers", "+5x Multiplier");
@@ -241,6 +253,7 @@ setInterval(function () {
       freeUpgrade();
       freeUpgrade();
       a.workers2 = true;
+      achievements++;
     }
     if (workers >= 75 && a.workers3 == false) {
       ach("Obtain 75 Workers", "+5 Super Workers");
@@ -250,6 +263,7 @@ setInterval(function () {
       freeSuperWorker();
       freeSuperWorker();
       a.workers3 = true;
+      achievements++;
     }
     if (workers >= 750 && a.workers4 == false) {
       ach("Obtain 750 Workers", "+10 Farms");
@@ -264,14 +278,16 @@ setInterval(function () {
       freeFarm();
       freeFarm();
       a.workers4 = true;
+      achievements++;
     }
     if (superWorkers >= 1 && a.superWorkers1 == false) {
-      ach("Buy a Super Worker", "+4x Multiplier");
+      ach("Obtain a Super Worker", "+4x Multiplier");
       freeUpgrade();
       freeUpgrade();
       freeUpgrade();
       freeUpgrade();
       a.superWorkers1 = true;
+      achievements++;
     }
     if (superWorkers >= 5 && a.superWorkers2 == false) {
       ach("Obtain 5 Super Workers", "+10 Workers");
@@ -286,20 +302,23 @@ setInterval(function () {
       freeWorker();
       freeWorker();
       a.superWorkers2 = true;
+      achievements++;
     }
     if (superWorkers >= 50 && a.superWorkers3 == false) {
       ach("Obtain 50 Super Workers", "+2 Farms");
       freeFarm();
       freeFarm();
       a.superWorkers3 = true;
+      achievements++;
     }
     if (superWorkers >= 500 && a.superWorkers4 == false) {
       ach("Obtain 500 Super Workers", "+1B Bananas");
       clicks += 1000000000;
       a.superWorkers4 = true;
+      achievements++;
     }
     if (farms >= 1 && a.farms1 == false) {
-      ach("Buy a Farm", "+8x Multiplier");
+      ach("Obtain a Farm", "+8x Multiplier");
       freeUpgrade();
       freeUpgrade();
       freeUpgrade();
@@ -309,21 +328,89 @@ setInterval(function () {
       freeUpgrade();
       freeUpgrade();
       a.farms1 = true;
+      achievements++;
     }
     if (farms >= 3 && a.farms2 == false) {
       ach("Obtain 3 Farms", "+50K Bananas");
       clicks += 50000;
       a.farms2 = true;
+      achievements++;
     }
     if (farms >= 15 && a.farms3 == false) {
       ach("Obtain 15 Farms", "+10M Bananas");
       clicks += 10000000;
       a.farms3 = true;
+      achievements++;
     }
     if (farms >= 75 && a.farms4 == false) {
       ach("Obtain 75 Farms", "+250B Bananas");
       clicks += 250000000000;
       a.farms4 = true;
+      achievements++;
+    }
+    if (a.banana1 == true) {
+      document.getElementById("banana1").style.border = "4px solid orange";
+    }
+    if (a.banana2 == true) {
+      document.getElementById("banana2").style.border = "4px solid orange";
+    }
+    if (a.banana3 == true) {
+      document.getElementById("banana3").style.border = "4px solid orange";
+    }
+    if (a.banana4 == true) {
+      document.getElementById("banana4").style.border = "4px solid orange";
+    }
+    if (a.multiplier1 == true) {
+      document.getElementById("multiplier1").style.border = "4px solid orange";
+    }
+    if (a.multiplier2 == true) {
+      document.getElementById("multiplier2").style.border = "4px solid orange";
+    }
+    if (a.multiplier3 == true) {
+      document.getElementById("multiplier3").style.border = "4px solid orange";
+    }
+    if (a.multiplier4 == true) {
+      document.getElementById("multiplier4").style.border = "4px solid orange";
+    }
+    if (a.workers1 == true) {
+      document.getElementById("workers1").style.border = "4px solid orange";
+    }
+    if (a.workers2 == true) {
+      document.getElementById("workers2").style.border = "4px solid orange";
+    }
+    if (a.workers3 == true) {
+      document.getElementById("workers3").style.border = "4px solid orange";
+    }
+    if (a.workers4 == true) {
+      document.getElementById("workers4").style.border = "4px solid orange";
+    }
+    if (a.superWorkers1 == true) {
+      document.getElementById("superWorkers1").style.border =
+        "4px solid orange";
+    }
+    if (a.superWorkers2 == true) {
+      document.getElementById("superWorkers2").style.border =
+        "4px solid orange";
+    }
+    if (a.superWorkers3 == true) {
+      document.getElementById("superWorkers3").style.border =
+        "4px solid orange";
+    }
+    if (a.superWorkers4 == true) {
+      document.getElementById("superWorkers4").style.border =
+        "4px solid orange";
+    }
+    if (a.farms1 == true) {
+      document.getElementById("farms1").style.border = "4px solid orange";
+    }
+    if (a.farms2 == true) {
+      document.getElementById("farms2").style.border = "4px solid orange";
+    }
+    if (a.farms3 == true) {
+      document.getElementById("farms3").style.border = "4px solid orange";
+    }
+    if (a.farms4 == true) {
+      document.getElementById("farms4").style.border = "4px solid orange";
     }
   }
 }, 0);
@@ -378,7 +465,7 @@ function newWorker() {
 function freeWorker() {
   if (paused == false) {
     workers++;
-    workerCost += 100 * (1 + expPriceMultiplier / 10);
+    workerCost += 100 * (1 + expPriceWorker / 10);
   }
 }
 
@@ -398,7 +485,7 @@ function newSuperWorker() {
 function freeSuperWorker() {
   if (paused == false) {
     superWorkers++;
-    superWorkerCost += 1000 * (1 + expPriceMultiplier / 10);
+    superWorkerCost += 1000 * (1 + expPriceSuperWorker / 10);
   }
 }
 
@@ -418,7 +505,7 @@ function newFarm() {
 function freeFarm() {
   if (paused == false) {
     farms++;
-    farmCost += 150000 * (1 + expPriceMultiplier / 10);
+    farmCost += 150000 * (1 + expPriceFarm / 10);
   }
 }
 
@@ -470,7 +557,7 @@ function pause() {
 
 function help() {
   alert(
-    "Click on the banana to gain more bananas. Buy upgrades from the shop. Prices have slight exponential increases as you buy more items. The multiplier is fully effective on clicks, while much weaker on workers and farms."
+    "Click on the banana to gain more bananas. Obtain upgrades from the shop. Prices have slight exponential increases as you Obtain more items. The multiplier is fully effective on clicks, while much weaker on workers and farms."
   );
 }
 
@@ -586,6 +673,8 @@ function saveSettings() {
   expPriceSuperWorker = 0;
   expPriceFarm = 0;
   settingsOpen = false;
+  achievements = 0;
+  achTrackerOpen = false;
   a.banana1 = false;
   a.banana2 = false;
   a.banana3 = false;
@@ -632,4 +721,28 @@ function closeSettings() {
     document.getElementById("easy").style.color = "orange";
   }
   settings();
+}
+
+function achTracker() {
+  if (achTrackerOpen == false) {
+    achTrackerOpen = true;
+    paused = true;
+    document.getElementById("shop").style.display = "none";
+    document.getElementById("banana").style.display = "none";
+    document.getElementById("clickCounter").style.display = "none";
+    document.getElementById("divider2").style.display = "none";
+    document.getElementById("divider3").style.display = "none";
+    document.getElementById("divider4").style.display = "block";
+    document.getElementById("achTrackerMenu").style.display = "block";
+  } else if (achTrackerOpen == true) {
+    achTrackerOpen = false;
+    paused = false;
+    document.getElementById("shop").style.display = "block";
+    document.getElementById("banana").style.display = "block";
+    document.getElementById("clickCounter").style.display = "block";
+    document.getElementById("divider2").style.display = "block";
+    document.getElementById("divider3").style.display = "block";
+    document.getElementById("divider4").style.display = "none";
+    document.getElementById("achTrackerMenu").style.display = "none";
+  }
 }
