@@ -145,10 +145,39 @@ button#pause {
   height: 30px;
   text-align: center;
   border-radius: 50%;
-  top: 7px;
-  left: 10px;
+  top: 13px;
+  left: 18px;
   font-size: 25px;
   cursor: pointer;
+}
+#patchNotes {
+  position: absolute;
+  font-family: "Material Icons";
+  color: orange;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 50%;
+  width: auto;
+  height: auto;
+  top: 7px;
+  left: 65px;
+  font-size: 40px;
+  cursor: pointer;
+}
+#patchNotesMenu {
+  position: absolute;
+  top: 200px;
+  width: 60%;
+  height: 520px;
+  left: 50%;
+  transform: translate(-50%);
+  border: 5px solid rgb(60, 60, 60);
+  border-radius: 20px;
+  text-align: center;
+  display: block;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: none;
 }
 #settings {
   position: absolute;
@@ -191,6 +220,14 @@ button#pause {
   display: none;
 }
 #settingsDivider {
+  position: relative;
+  height: 6px;
+  width: 95%;
+  background: orange;
+  left: 50%;
+  transform: translate(-50%);
+}
+#patchNotesDivider {
   position: relative;
   height: 6px;
   width: 95%;
@@ -252,10 +289,40 @@ button#pause {
   opacity: 1;
   z-index: 1;
 }
+#achievement2 {
+  position: absolute;
+  width: 300px;
+  height: 90px;
+  background: rgb(30, 30, 30);
+  border: 4px solid orange;
+  border-radius: 10px;
+  top: 285px;
+  right: -330px;
+  font-size: 15px;
+  padding: 0 10px 0 10px;
+  opacity: 1;
+  z-index: 1;
+}
+#achievement3 {
+  position: absolute;
+  width: 300px;
+  height: 90px;
+  background: rgb(30, 30, 30);
+  border: 4px solid orange;
+  border-radius: 10px;
+  top: 390px;
+  right: -330px;
+  font-size: 15px;
+  padding: 0 10px 0 10px;
+  opacity: 1;
+  z-index: 1;
+}
 #achievement p {
   color: orange;
 }
-#achievement span {
+#achievement span,
+#achievement2 span,
+#achievement3 span {
   color: white;
 }
 #achTrackerMenu {
@@ -331,6 +398,12 @@ button#pause {
 .achPreview span {
   color: white;
 }
+/* #banana,
+#clickCounter,
+#shop,
+#divider2 {
+  display: none;
+} */
 @media (max-width: 800px) {
   #header {
     font-size: 60px;
