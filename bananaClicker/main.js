@@ -5,7 +5,7 @@ var upgCost = 100;
 var workerCost = 200;
 var superWorkerCost = 1000;
 var farmCost = 100000;
-var multiplier = 1;
+var multiplier = 0;
 var workers = 0;
 var superWorkers = 0;
 var farms = 0;
@@ -18,6 +18,10 @@ var settingsOpen = false;
 var difficulty = 2;
 var achievements = 0;
 var achTrackerOpen = false;
+var patchNotesOpen = false;
+var achSlot1 = true;
+var achSlot2 = true;
+var achSlot3 = true;
 
 const a = {
   banana1: false,
@@ -69,46 +73,138 @@ function abbreviate(x) {
 }
 
 function ach(title, reward) {
-  document.getElementById("achTitle").innerHTML = title.toString();
-  document.getElementById("achReward").innerHTML = reward.toString();
-  var opacity = 0;
-  var right = -330;
-  var interval = setInterval(function () {
-    if (opacity < 1) {
-      opacity += 0.01;
-    } else {
-      opacity = 1;
-    }
-    if (right < 30) {
-      right += 6;
-    } else {
-      right = 30;
-    }
-    document.getElementById("achievement").style.opacity = opacity;
-    document.getElementById("achievement").style.right = right + "px";
-  });
-  setTimeout(function () {
-    clearInterval(interval);
-  }, 1000);
-  setTimeout(function () {
-    var interval2 = setInterval(function () {
-      if (opacity > 0) {
-        opacity -= 0.01;
+  if (achSlot1 == true) {
+    achSlot1 = false;
+    document.getElementById("achTitle").innerHTML = title.toString();
+    document.getElementById("achReward").innerHTML = reward.toString();
+    var opacity = 0;
+    var right = -330;
+    var interval = setInterval(function () {
+      if (opacity < 1) {
+        opacity += 0.01;
       } else {
-        opacity = 0;
+        opacity = 1;
       }
-      if (right > -330) {
-        right -= 6;
+      if (right < 30) {
+        right += 6;
       } else {
-        right = -330;
+        right = 30;
       }
       document.getElementById("achievement").style.opacity = opacity;
       document.getElementById("achievement").style.right = right + "px";
     });
     setTimeout(function () {
-      clearInterval(interval2);
+      clearInterval(interval);
     }, 1000);
-  }, 3000);
+    setTimeout(function () {
+      var interval2 = setInterval(function () {
+        if (opacity > 0) {
+          opacity -= 0.01;
+        } else {
+          opacity = 0;
+        }
+        if (right > -330) {
+          right -= 6;
+        } else {
+          right = -330;
+        }
+        document.getElementById("achievement").style.opacity = opacity;
+        document.getElementById("achievement").style.right = right + "px";
+      });
+      setTimeout(function () {
+        clearInterval(interval2);
+        achSlot1 = true;
+      }, 500);
+    }, 3000);
+  } else if (achSlot2 == true) {
+    achSlot2 = false;
+    document.getElementById("achTitle2").innerHTML = title.toString();
+    document.getElementById("achReward2").innerHTML = reward.toString();
+    var opacity = 0;
+    var right = -330;
+    var interval = setInterval(function () {
+      if (opacity < 1) {
+        opacity += 0.01;
+      } else {
+        opacity = 1;
+      }
+      if (right < 30) {
+        right += 6;
+      } else {
+        right = 30;
+      }
+      document.getElementById("achievement2").style.opacity = opacity;
+      document.getElementById("achievement2").style.right = right + "px";
+    });
+    setTimeout(function () {
+      clearInterval(interval);
+    }, 1000);
+    setTimeout(function () {
+      var interval2 = setInterval(function () {
+        if (opacity > 0) {
+          opacity -= 0.01;
+        } else {
+          opacity = 0;
+        }
+        if (right > -330) {
+          right -= 6;
+        } else {
+          right = -330;
+        }
+        document.getElementById("achievement2").style.opacity = opacity;
+        document.getElementById("achievement2").style.right = right + "px";
+      });
+      setTimeout(function () {
+        clearInterval(interval2);
+        achSlot2 = true;
+      }, 500);
+    }, 3000);
+  } else if (achSlot3 == true) {
+    achSlot3 = false;
+    document.getElementById("achTitle3").innerHTML = title.toString();
+    document.getElementById("achReward3").innerHTML = reward.toString();
+    var opacity = 0;
+    var right = -330;
+    var interval = setInterval(function () {
+      if (opacity < 1) {
+        opacity += 0.01;
+      } else {
+        opacity = 1;
+      }
+      if (right < 30) {
+        right += 6;
+      } else {
+        right = 30;
+      }
+      document.getElementById("achievement3").style.opacity = opacity;
+      document.getElementById("achievement3").style.right = right + "px";
+    });
+    setTimeout(function () {
+      clearInterval(interval);
+    }, 1000);
+    setTimeout(function () {
+      var interval2 = setInterval(function () {
+        if (opacity > 0) {
+          opacity -= 0.01;
+        } else {
+          opacity = 0;
+        }
+        if (right > -330) {
+          right -= 6;
+        } else {
+          right = -330;
+        }
+        document.getElementById("achievement3").style.opacity = opacity;
+        document.getElementById("achievement3").style.right = right + "px";
+      });
+      setTimeout(function () {
+        clearInterval(interval2);
+        achSlot3 = true;
+      }, 500);
+    }, 3000);
+  } else {
+    return;
+  }
 }
 
 setInterval(function () {
@@ -413,7 +509,7 @@ setInterval(function () {
       document.getElementById("farms4").style.border = "4px solid orange";
     }
   }
-}, 0);
+});
 
 setInterval(function () {
   if (paused == false) {
@@ -675,6 +771,10 @@ function saveSettings() {
   settingsOpen = false;
   achievements = 0;
   achTrackerOpen = false;
+  patchNotesOpen = false;
+  achSlot1 = true;
+  achSlot2 = true;
+  achSlot3 = true;
   a.banana1 = false;
   a.banana2 = false;
   a.banana3 = false;
@@ -744,5 +844,25 @@ function achTracker() {
     document.getElementById("divider3").style.display = "block";
     document.getElementById("divider4").style.display = "none";
     document.getElementById("achTrackerMenu").style.display = "none";
+  }
+}
+
+function patchNotes() {
+  if (patchNotesOpen == false) {
+    patchNotesOpen = true;
+    paused = true;
+    document.getElementById("shop").style.display = "none";
+    document.getElementById("banana").style.display = "none";
+    document.getElementById("clickCounter").style.display = "none";
+    document.getElementById("divider2").style.display = "none";
+    document.getElementById("patchNotesMenu").style.display = "block";
+  } else if (patchNotesOpen == true) {
+    patchNotesOpen = false;
+    paused = false;
+    document.getElementById("shop").style.display = "block";
+    document.getElementById("banana").style.display = "block";
+    document.getElementById("clickCounter").style.display = "block";
+    document.getElementById("divider2").style.display = "block";
+    document.getElementById("patchNotesMenu").style.display = "none";
   }
 }
