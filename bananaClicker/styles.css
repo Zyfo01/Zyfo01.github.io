@@ -53,6 +53,16 @@ p {
   background: orange;
   top: 768px;
 }
+#divider4 {
+  width: 96%;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  height: 10px;
+  background: orange;
+  top: 865px;
+  display: none;
+}
 #banana {
   width: 400px;
   cursor: pointer;
@@ -154,6 +164,20 @@ button#pause {
   font-size: 40px;
   cursor: pointer;
 }
+#achTracker {
+  position: absolute;
+  font-family: "Material Icons";
+  color: orange;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 50%;
+  width: auto;
+  height: auto;
+  top: 7px;
+  right: 65px;
+  font-size: 40px;
+  cursor: pointer;
+}
 #settingsMenu {
   position: absolute;
   top: 200px;
@@ -232,6 +256,79 @@ button#pause {
   color: orange;
 }
 #achievement span {
+  color: white;
+}
+#achTrackerMenu {
+  position: absolute;
+  top: 200px;
+  width: 1100px;
+  height: 620px;
+  left: 50%;
+  transform: translate(-50%);
+  border: 5px solid rgb(60, 60, 60);
+  border-radius: 20px;
+  text-align: center;
+  display: none;
+}
+#achDivider {
+  position: relative;
+  height: 6px;
+  width: 95%;
+  background: orange;
+  left: 50%;
+  transform: translate(-50%);
+}
+#achRow1 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 150px;
+  display: flex;
+}
+#achRow2 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 240px;
+  display: flex;
+}
+#achRow3 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 330px;
+  display: flex;
+}
+#achRow4 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 420px;
+  display: flex;
+}
+#achRow5 {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 510px;
+  display: flex;
+}
+.achPreview {
+  width: 230px;
+  height: 70px;
+  background: rgb(30, 30, 30);
+  border: 4px solid rgb(60, 60, 60);
+  border-radius: 10px;
+  top: 180px;
+  font-size: 15px;
+  padding: 0 10px 0 10px;
+  z-index: 1;
+  margin: 5px;
+}
+.achPreview p {
+  color: orange;
+}
+.achPreview span {
   color: white;
 }
 @media (max-width: 800px) {
