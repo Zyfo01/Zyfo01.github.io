@@ -155,12 +155,14 @@ peer.on("connection", (c) => {
   });
   peer.on("disconnected", () => {
     alert("Opponent has disconnected.");
-    dc();
+    conn = peer.disconnect();
+    $("#connect").show();
+    clearBoard();
   });
 });
 
 function c() {
-  if ((firstTurnPossible == true)) {
+  if (firstTurnPossible == true) {
     yourTurn = true;
   }
   var id = $("#remoteID").val();
