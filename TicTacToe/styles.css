@@ -86,15 +86,15 @@ td {
   position: absolute;
   top: 10px;
   left: 10px;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   background: rgb(255, 120, 120);
   color: white;
-  border: 5px solid white;
+  border: 3px solid white;
   font-family: "Poppins";
   font-weight: 600;
   border-radius: 50%;
-  font-size: 32px;
+  font-size: 20px;
   cursor: pointer;
 }
 
