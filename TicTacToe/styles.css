@@ -56,14 +56,6 @@ p#peerID {
   font-weight: 600;
 }
 
-#connect {
-  display: block;
-}
-
-#game {
-  display: none;
-}
-
 table {
   position: absolute;
   left: 50%;
@@ -104,4 +96,12 @@ td {
   transform: translate(-50%);
   top: 34vh;
   font-size: 25px;
+}
+
+#connect {
+  display: block;
+}
+
+#game {
+  display: none;
 }
