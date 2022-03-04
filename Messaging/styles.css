@@ -83,6 +83,7 @@ p#peerID {
 }
 
 .sent {
+  text-align: left;
   background: dodgerblue;
   width: fit-content;
   font-size: 25px;
@@ -91,6 +92,7 @@ p#peerID {
   border-radius: 15px;
 }
 .received {
+  text-align: left;
   background: rgb(60, 60, 60);
   width: fit-content;
   font-size: 25px;
