@@ -46,6 +46,8 @@ input {
   text-align: center;
   border-radius: 20px;
   padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 button {
