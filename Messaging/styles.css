@@ -68,21 +68,6 @@ input#messageTxt {
   padding: 20px;
   font-size: 25px;
 }
-button#sendMessage {
-  position: absolute;
-  top: 1170px;
-  left: 938px;
-  height: 45px;
-  width: 45px;
-  background: dodgerblue;
-  font-size: 18px;
-  border-radius: 15px;
-  border: none;
-}
-
-button#sendMessage:hover {
-  color: white;
-}
 
 button:hover {
   background: white;
