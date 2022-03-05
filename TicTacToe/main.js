@@ -211,10 +211,9 @@ function c() {
 }
 
 function dc() {
-  if (confirm("Are you sure you want to disconnect?")) {
-    conn = peer.disconnect();
-    $("#game").hide();
-    $("#connect").show();
-    clearBoard();
-  }
+  if (!confirm("Are you sure you want to disconnect?")) return;
+  conn = peer.disconnect();
+  $("#game").hide();
+  $("#connect").show();
+  clearBoard();
 }
