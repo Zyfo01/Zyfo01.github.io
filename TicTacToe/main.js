@@ -1,10 +1,20 @@
 // GAME
 
-var firstTurnPossible = true;
-var yourTurn = false;
+var firstTurnPossible = true,
+  yourTurn = false,
+  a1Locked = false,
+  a2Locked = false,
+  a3Locked = false,
+  b1Locked = false,
+  b2Locked = false,
+  b3Locked = false,
+  c1Locked = false,
+  c2Locked = false,
+  c3Locked = false;
 
 function x(querySelector) {
-  if (yourTurn == false) return;
+  if (yourTurn == false || window[querySelector.replace("#", "") + "Locked"])
+    return;
   $(querySelector).text("X").css("color", "white");
   conn.send(querySelector);
   yourTurn = false;
@@ -12,7 +22,7 @@ function x(querySelector) {
 }
 
 function clearBoard() {
-  if (yourTurn == true) $("#turn").text("YOUR TURN"); 
+  if (yourTurn == true) $("#turn").text("YOUR TURN");
   else $("#turn").text("OPPONENT'S TURN");
   $("#a1").text("");
   $("#a2").text("");
@@ -42,10 +52,29 @@ function lose(box1, box2, box3) {
   $("#turn").text("YOU LOSE");
   setTimeout(() => {
     clearBoard();
-  }, 2500);
+  }, 3000);
 }
 
 setInterval(() => {
+  if ($("#a1").text() != "") a1Locked = true;
+  else a1Locked = false;
+  if ($("#a2").text() != "") a2Locked = true;
+  else a2Locked = false;
+  if ($("#a3").text() != "") a3Locked = true;
+  else a3Locked = false;
+  if ($("#b1").text() != "") b1Locked = true;
+  else b1Locked = false;
+  if ($("#b2").text() != "") b2Locked = true;
+  else b2Locked = false;
+  if ($("#b3").text() != "") b3Locked = true;
+  else b3Locked = false;
+  if ($("#c1").text() != "") c1Locked = true;
+  else c1Locked = false;
+  if ($("#c2").text() != "") c2Locked = true;
+  else c2Locked = false;
+  if ($("#c3").text() != "") c3Locked = true;
+  else c3Locked = false;
+
   if (
     $("#a1").text() == "X" &&
     $("#a2").text() == "X" &&
@@ -149,7 +178,6 @@ setInterval(() => {
 
 var peer = new Peer();
 var conn = null;
-var message = null;
 
 peer.on("open", (id) => {
   $("#peerID").text(id);
@@ -158,9 +186,10 @@ peer.on("open", (id) => {
 peer.on("connection", (c) => {
   firstTurnPossible = false;
   c.on("data", (data) => {
+    if (yourTurn) return;
+    $(data).text("O").css("color", "rgb(255,120,120)");
     yourTurn = true;
     $("#turn").text("YOUR TURN");
-    $(data).text("O").css("color", "rgb(255,120,120)");
   });
   peer.on("disconnected", () => {
     alert("Opponent has disconnected.");
