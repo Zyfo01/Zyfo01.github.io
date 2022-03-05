@@ -22,7 +22,7 @@ function x(querySelector) {
 }
 
 function clearBoard() {
-  if (yourTurn == true) $("#turn").text("YOUR TURN");
+  if (yourTurn) $("#turn").text("YOUR TURN");
   else $("#turn").text("OPPONENT'S TURN");
   $("#a1").text("");
   $("#a2").text("");
@@ -200,7 +200,7 @@ peer.on("connection", (c) => {
 });
 
 function c() {
-  if (firstTurnPossible == true) {
+  if (firstTurnPossible) {
     yourTurn = true;
     $("#turn").text("YOUR TURN");
   } else $("#turn").text("OPPONENT'S TURN");
