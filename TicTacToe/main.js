@@ -191,12 +191,13 @@ peer.on("connection", (c) => {
     yourTurn = true;
     $("#turn").text("YOUR TURN");
   });
-  peer.on("disconnected", () => {
-    alert("Opponent has disconnected.");
-    $("#game").hide();
-    $("#connect").show();
-    clearBoard();
-  });
+});
+
+peer.on("error", (err) => {
+  if (err.type == "invalid-id") {
+    alert("Invalid ID.");
+    $("#remoteID").val("");
+  }
 });
 
 function c() {
