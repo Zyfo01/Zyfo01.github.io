@@ -1,27 +1,44 @@
 // GAME
 
-var firstTurnPossible = true,
-  yourTurn = false,
-  a1Locked = false,
-  a2Locked = false,
-  a3Locked = false,
-  b1Locked = false,
-  b2Locked = false,
-  b3Locked = false,
-  c1Locked = false,
-  c2Locked = false,
-  c3Locked = false;
+document.addEventListener("keydown", onKeyDown);
+document.addEventListener("keyup", onKeyUp);
+
+var firstTurnPossible = true;
+var yourTurn = false;
+
+var shiftKey = false;
+
+var chatBan = false;
+var chatBanTime = 5;
+var tempMessageCount = 0;
+var tempMessageLimit = 8;
+
+setInterval(() => {
+  if (tempMessageCount > 0) tempMessageCount--;
+}, 5000);
+
+{
+  var a1Locked = false,
+    a2Locked = false,
+    a3Locked = false,
+    b1Locked = false,
+    b2Locked = false,
+    b3Locked = false,
+    c1Locked = false,
+    c2Locked = false,
+    c3Locked = false;
+}
 
 function x(querySelector) {
   if (yourTurn == false || window[querySelector.replace("#", "") + "Locked"])
     return;
   $(querySelector).text("X").css("color", "white");
-  conn.send(querySelector);
+  conn.send({ type: "turn", data: querySelector });
   yourTurn = false;
   $("#turn").text("OPPONENT'S TURN");
 }
 
-function clearBoard() {
+function reset() {
   if (yourTurn) $("#turn").text("YOUR TURN");
   else $("#turn").text("OPPONENT'S TURN");
   $("#a1").text("");
@@ -33,6 +50,17 @@ function clearBoard() {
   $("#c1").text("");
   $("#c2").text("");
   $("#c3").text("");
+  a1Locked = false;
+  a2Locked = false;
+  a3Locked = false;
+  b1Locked = false;
+  b2Locked = false;
+  b3Locked = false;
+  c1Locked = false;
+  c2Locked = false;
+  c3Locked = false;
+  tempMessageCount = 0;
+  chatBanTime = 5;
 }
 
 function win(box1, box2, box3) {
@@ -41,7 +69,7 @@ function win(box1, box2, box3) {
   $(box3).css("color", "rgb(255, 255, 150)");
   $("#turn").text("YOU WIN");
   setTimeout(() => {
-    clearBoard();
+    reset();
   }, 3000);
 }
 
@@ -51,11 +79,21 @@ function lose(box1, box2, box3) {
   $(box3).css("color", "rgb(255, 255, 150)");
   $("#turn").text("YOU LOSE");
   setTimeout(() => {
-    clearBoard();
+    reset();
   }, 3000);
 }
 
 setInterval(() => {
+  if (tempMessageCount > tempMessageLimit && chatBan == false) {
+    warning("Chat disabled for " + chatBanTime + "s.");
+    chatBan = true;
+    setTimeout(() => {
+      chatBan = false;
+      tempMessageCount = 0;
+    }, chatBanTime * 1000);
+    chatBanTime *= 2;
+  }
+
   if ($("#a1").text() != "") a1Locked = true;
   else a1Locked = false;
   if ($("#a2").text() != "") a2Locked = true;
@@ -88,7 +126,7 @@ setInterval(() => {
   ) {
     $("#turn").text("TIE!");
     setTimeout(() => {
-      clearBoard();
+      reset();
     }, 3000);
   }
 
@@ -191,6 +229,37 @@ setInterval(() => {
     lose("#a3", "#b2", "#c1");
 });
 
+function sendMessage() {
+  if (!$("#message").val().trim() || chatBan) return;
+  $("#messenger").append(
+    $("<div class='sent'>").text($("#message").val().trim())
+  );
+  conn.send({ type: "message", data: $("#message").val().trim() });
+  $("#message").val("");
+  document
+    .getElementById("messenger")
+    .scrollTo({ top: 999999999999999, behavior: "smooth" });
+  tempMessageCount++;
+}
+
+function warning(str) {
+  $("#messenger").append($("<div class='warning'>").text("> " + str));
+  document.getElementById("messenger").scrollBy(0, 150);
+}
+
+function onKeyDown(e) {
+  if (e.key == "Shift") shiftKey = true;
+  if (e.key == "Enter" && !shiftKey) sendMessage();
+  if (e.key == "t")
+    setTimeout(() => {
+      $("#message").focus();
+    });
+}
+
+function onKeyUp(e) {
+  if (e.key == "Shift") shiftKey = false;
+}
+
 // PEER
 
 var peer = new Peer();
@@ -202,11 +271,33 @@ peer.on("open", (id) => {
 
 peer.on("connection", (c) => {
   firstTurnPossible = false;
-  c.on("data", (data) => {
-    if (yourTurn) return;
-    $(data).text("O").css("color", "rgb(255,120,120)");
-    yourTurn = true;
-    $("#turn").text("YOUR TURN");
+  c.on("data", ({ type, data }) => {
+    if (type === "turn") {
+      if (yourTurn) {
+        conn.send({
+          type: "disconnect",
+          data: "You have been kicked for cheating.",
+        });
+        return;
+      }
+      $(data).text("O").css("color", "rgb(255,120,120)");
+      yourTurn = true;
+      $("#turn").text("YOUR TURN");
+    } else if (type === "message") {
+      $("#messenger").append($("<div class='received'>").text(data));
+      document.getElementById("messenger").scrollBy(0, 50);
+    } else if (type === "warning") {
+      warning(data);
+    } else if (type === "disconnect") {
+      conn = peer.disconnect();
+      $("#game").hide();
+      $("#connect").show();
+      reset();
+      $("#remoteID").val("");
+      setTimeout(() => {
+        alert(data);
+      }, 300);
+    }
   });
 });
 
@@ -233,5 +324,5 @@ function dc() {
   conn = peer.disconnect();
   $("#game").hide();
   $("#connect").show();
-  clearBoard();
+  reset();
 }
