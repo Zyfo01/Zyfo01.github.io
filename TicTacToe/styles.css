@@ -18,6 +18,24 @@ h1 {
   font-size: 40px;
 }
 
+h1#header {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 140px;
+  font-size: 110px;
+  width: fit-content;
+}
+
+h1#subheader {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  top: 260px;
+  font-size: 35px;
+  font-weight: 500;
+}
+
 input {
   position: relative;
   top: 39vh;
@@ -144,42 +162,29 @@ td {
   resize: none;
 }
 
-.sent {
+.message {
   margin: 10px 10px -5px 10px;
   width: fit-content;
   max-width: 280px;
   min-height: 27px;
   border-radius: 10px;
   font-size: 18px;
+  padding: 2px 5px 3px 5px;
+  font-family: "Poppins";
+}
+
+.sent {
   color: white;
   background: dodgerblue;
-  padding: 0 5px 1px 5px;
-  font-family: "Poppins";
 }
 
 .received {
-  margin: 10px 10px -5px 10px;
-  width: fit-content;
-  max-width: 280px;
-  min-height: 27px;
-  border-radius: 10px;
-  font-size: 18px;
   color: white;
   background: rgb(60, 60, 60);
-  padding: 0 5px 1px 5px;
-  font-family: "Poppins";
 }
 
 .warning {
-  margin: 10px 10px -5px 10px;
-  width: fit-content;
-  max-width: 280px;
-  min-height: 27px;
-  border-radius: 10px;
-  font-size: 18px;
   color: rgb(150, 0, 0);
-  padding: 0 5px 1px 5px;
-  font-family: "Poppins";
 }
 
 #connect {
