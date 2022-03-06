@@ -232,7 +232,7 @@ setInterval(() => {
 function sendMessage() {
   if (!$("#message").val().trim() || chatBan) return;
   $("#messenger").append(
-    $("<div class='sent'>").text($("#message").val().trim())
+    $("<div class='message sent'>").text($("#message").val().trim())
   );
   conn.send({ type: "message", data: $("#message").val().trim() });
   $("#message").val("");
@@ -243,8 +243,10 @@ function sendMessage() {
 }
 
 function warning(str) {
-  $("#messenger").append($("<div class='warning'>").text("> " + str));
-  document.getElementById("messenger").scrollBy(0, 150);
+  $("#messenger").append($("<div class='message warning'>").text("> " + str));
+  document
+    .getElementById("messenger")
+    .scrollTo({ top: 999999999999999, behavior: "smooth" });
 }
 
 function onKeyDown(e) {
@@ -260,7 +262,7 @@ function onKeyUp(e) {
   if (e.key == "Shift") shiftKey = false;
 }
 
-// PEER
+// NETWORKING
 
 var peer = new Peer();
 var conn = null;
@@ -284,7 +286,7 @@ peer.on("connection", (c) => {
       yourTurn = true;
       $("#turn").text("YOUR TURN");
     } else if (type === "message") {
-      $("#messenger").append($("<div class='received'>").text(data));
+      $("#messenger").append($("<div class='message received'>").text(data));
       document.getElementById("messenger").scrollBy(0, 50);
     } else if (type === "warning") {
       warning(data);
