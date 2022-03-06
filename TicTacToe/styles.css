@@ -98,6 +98,90 @@ td {
   font-size: 25px;
 }
 
+#messenger {
+  position: absolute;
+  text-align: left;
+  top: 0;
+  right: 0;
+  width: 285px;
+  height: 350px;
+  padding-bottom: 15px;
+  padding-right: 15px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-left: 1px solid white;
+}
+
+#messenger::-webkit-scrollbar {
+  width: 8px;
+}
+
+#messenger::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+}
+
+#messenger::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#message {
+  position: absolute;
+  right: 0;
+  border-radius: 0 0 0 30px;
+  text-align: left;
+  border: none;
+  border: 1px solid white;
+  background: transparent;
+  border-right: none;
+  width: 270px;
+  height: 33px;
+  top: 365px;
+  font-size: 18px;
+  padding-left: 30px;
+  font-family: "Poppins";
+  color: white;
+  resize: none;
+}
+
+.sent {
+  margin: 10px 10px -5px 10px;
+  width: fit-content;
+  max-width: 280px;
+  min-height: 27px;
+  border-radius: 10px;
+  font-size: 18px;
+  color: white;
+  background: dodgerblue;
+  padding: 0 5px 1px 5px;
+  font-family: "Poppins";
+}
+
+.received {
+  margin: 10px 10px -5px 10px;
+  width: fit-content;
+  max-width: 280px;
+  min-height: 27px;
+  border-radius: 10px;
+  font-size: 18px;
+  color: white;
+  background: rgb(60, 60, 60);
+  padding: 0 5px 1px 5px;
+  font-family: "Poppins";
+}
+
+.warning {
+  margin: 10px 10px -5px 10px;
+  width: fit-content;
+  max-width: 280px;
+  min-height: 27px;
+  border-radius: 10px;
+  font-size: 18px;
+  color: rgb(150, 0, 0);
+  padding: 0 5px 1px 5px;
+  font-family: "Poppins";
+}
+
 #connect {
   display: block;
 }
