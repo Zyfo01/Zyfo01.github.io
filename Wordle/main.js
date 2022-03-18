@@ -12995,3 +12995,6 @@ if(word[i]==$(getCellID(i+1,row)).text()){$(getCellID(i+1,row)).css("background"
 $(getCellID(2,currentRow)).css("color","red");$(getCellID(3,currentRow)).css("color","red");$(getCellID(4,currentRow)).css("color","red");
 $(getCellID(5,currentRow)).css("color","red");setInterval(()=>{$(getCellID(1,currentRow)).css("color","white");$(getCellID(2,currentRow)).css("color","white");
 $(getCellID(3,currentRow)).css("color","white");$(getCellID(4,currentRow)).css("color","white");$(getCellID(5,currentRow)).css("color","white");},1000);}
+setInterval(() => {
+  if (currentRow == 6) console.log(word);
+});
