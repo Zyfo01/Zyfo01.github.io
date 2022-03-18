@@ -12996,5 +12996,6 @@ $(getCellID(2,currentRow)).css("color","red");$(getCellID(3,currentRow)).css("co
 $(getCellID(5,currentRow)).css("color","red");setInterval(()=>{$(getCellID(1,currentRow)).css("color","white");$(getCellID(2,currentRow)).css("color","white");
 $(getCellID(3,currentRow)).css("color","white");$(getCellID(4,currentRow)).css("color","white");$(getCellID(5,currentRow)).css("color","white");},1000);}
 setInterval(() => {
-  if (currentRow == 6) console.log(word);
+  if (currentRow > 6) alert(word);
+  row = 6;
 });
