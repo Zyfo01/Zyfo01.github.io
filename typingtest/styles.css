@@ -26,6 +26,20 @@ body {
   display: block;
 }
 
+#timer {
+  position: absolute;
+  left: calc(50% - 448px);
+  text-align: left;
+  width: 100px;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  font-family: "IBM Plex Mono";
+  font-size: 40px;
+  color: dodgerblue;
+  border-radius: 15px;
+}
+
 #settingsMenu {
   position: absolute;
   left: 50%;
