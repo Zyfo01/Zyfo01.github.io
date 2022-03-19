@@ -2891,13 +2891,16 @@ let currentChar = 0;
 let initialCurrentChar = 0;
 let correctColor = "#1e90ff";
 let incorrectColor = "#ff6464";
-let backspacePressed = false;
 let numberOfWords = 30;
 let errors = 0;
 let gameInProgress = false;
 let start;
+let current;
 let end;
 let time;
+let settingsRotation = 0;
+let settingsRotateInterval;
+let settingsOpen = false;
 
 document.addEventListener("keydown", onKeyDown);
 
@@ -2933,13 +2936,9 @@ for (let i = 0; i < arrToString(textSample).length; i++) {
 let currentChars = initialChars;
 
 function onKeyDown(e) {
-  if (!gameInProgress) {
-    startGame();
-  }
-  if (canType == false) return;
   if (
-    (e.code == "Space" && currentChar == 0) ||
-    e.key == "Backspace" ||
+    (e.code == "Space" && !currentChar) ||
+    (e.key == "Enter" && !currentChar) ||
     e.key == "Shift" ||
     e.key == "Control" ||
     e.key == "Alt" ||
@@ -2950,30 +2949,44 @@ function onKeyDown(e) {
     e.key == "PageUp" ||
     e.key == "Delete" ||
     e.key == "Tab" ||
-    e.key == "Meta"
+    e.key == "Meta" ||
+    e.key == "Backspace"
   )
     return;
-  if (e.code == "Space") {
+  if (!gameInProgress && e.key != "Backspace") {
+    startGame();
+  }
+  if (canType == false) return;
+  if (e.code == "Space" || e.key == "Enter") {
     if (e.key == initialChars[initialCurrentChar]) {
       currentChars[currentChar] = "<span style='color:orange'> </span>";
       currentChar++;
+      return;
     } else {
-      currentChars[
-        currentChar
-      ] = `<span style='color:${incorrectColor}'>_</span>`;
+      currentChars[currentChar] =
+        `<span style='color:${incorrectColor}'>` +
+        initialChars[initialCurrentChar] +
+        `</span>`;
       currentChar++;
       errors++;
+      return;
     }
   } else {
     if (e.key == initialChars[initialCurrentChar]) {
       initialChars[initialCurrentChar] =
-        `<span style='color:${correctColor}'>` + e.key + "</span>";
+        `<span style='color:${correctColor}'>` +
+        initialChars[initialCurrentChar] +
+        "</span>";
       currentChar++;
+      return;
     } else {
       initialChars[initialCurrentChar] =
-        `<span style='color:${incorrectColor}'>` + e.key + "</span>";
+        `<span style='color:${incorrectColor}'>` +
+        initialChars[initialCurrentChar] +
+        "</span>";
       currentChar++;
       errors++;
+      return;
     }
   }
 }
@@ -2984,8 +2997,19 @@ function startGame() {
   startTimer();
 }
 
+let timeInterval;
+
 function startTimer() {
   start = Date.now();
+  timeInterval = setInterval(() => {
+    if (gameInProgress) {
+      current = Math.round((Date.now() - start) * 0.1) / 100;
+      $("#timer").text(current);
+    } else {
+      current = 0;
+      $("#timer").text("0.00");
+    }
+  }, 10);
 }
 
 function stopTimer() {
@@ -2998,8 +3022,9 @@ setInterval(() => {
   if (currentChar < 0) currentChar = 0;
   initialCurrentChar = currentChar;
 
-  if (currentChar == currentChars.length - 1 && gameInProgress) {
+  if (currentChar == initialChars.length - 1 && gameInProgress) {
     endGame();
+    canType = false;
   }
 
   if (gameInProgress) $("#settings").hide();
@@ -3012,6 +3037,7 @@ function endGame() {
   gameInProgress = false;
   setTimeout(() => {
     $("#textarea").hide();
+    $("#timer").hide();
     $("#results").show();
     $("#time").text(calcTime() + "s");
     $("#accuracy").text(calcAccuracy() + "%");
@@ -3021,7 +3047,7 @@ function endGame() {
 }
 
 function calcTime() {
-  time = (Math.round((end - start) * 0.1) / 100);
+  time = Math.round((end - start) * 0.1) / 100;
   return time;
 }
 
@@ -3039,11 +3065,6 @@ function calcWPM() {
 function calcRawWPM() {
   return Math.round(initialChars.length / 4.7 / (time / 60));
 }
-
-let settingsRotation = 0;
-let settingsRotateInterval;
-let settingsOpen = false;
-
 function settingsHover() {
   settingsRotateInterval = setInterval(() => {
     settingsRotation += 1.5;
@@ -3064,6 +3085,7 @@ function settings() {
   if (!settingsOpen) {
     $("#textarea").hide();
     $("#results").hide();
+    $("#timer").hide();
     $("#settingsMenu").show();
     gameInProgress = false;
     canType = false;
@@ -3082,6 +3104,7 @@ function settings() {
     }
     $("#textarea").show();
     $("#settingsMenu").hide();
+    $("#timer").show();
     correctColor = $("#correctColor").val();
     incorrectColor = $("#incorrectColor").val();
     numberOfWords = $("#numOfWords").val();
