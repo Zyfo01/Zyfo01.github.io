@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      id="settings"
+      onmouseenter="settingsHover()"
+      onmouseleave="settingsUnHover()"
+      onclick="settings()"
+    >
+      settings
+    </div>
+    <div id="textarea"></div>
+    <div id="settingsMenu">
+      <h1>SETTINGS</h1>
+      <p>
+        Correct Color: <input type="color" id="correctColor" value="#1e90ff" />
+      </p>
+      <p>
+        Incorrect Color:
+        <input type="color" id="incorrectColor" value="#ff6464" />
+      </p>
+      <p>
+        Words:
+        <input type="text" id="numOfWords" value="30" />
+      </p>
+      <br />
+      <button onclick="resetColors()">RESET COLORS</button><br />
+      <button onclick="resetTest()">CREATE TEST</button><br />
+      <button onclick="settings()">DONE</button>
+    </div>
+    <div id="results">
+      <h1>TIME: <span id="time"></span></h1>
+      <h1>ACCURACY: <span id="accuracy"></span></h1>
+      <h1>WPM: <span id="WPM"></span></h1>
+      <h1>RAW WPM: <span id="rawWPM"></span></h1>
+      <button onclick="resetTest()">CREATE NEW TEST</button><br />
+    </div>
+  </body>
+  <script src="main.js"></script>
+</html>
