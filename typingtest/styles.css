@@ -1,155 +1,49 @@
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-
-* {
-  padding: 0;
-}
-
-body {
-  margin: 5px;
-  background: rgb(15, 15, 15);
-}
-
-#textarea {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: transparent;
-  font-family: "IBM Plex Mono";
-  font-size: 40px;
-  color: rgb(150, 150, 150);
-  border-radius: 15px;
-  width: 1000px;
-  max-width: 1000px;
-  height: 400px;
-  display: block;
-}
-
-#timer {
-  position: absolute;
-  left: calc(50% - 448px);
-  text-align: left;
-  width: 100px;
-  top: 30%;
-  transform: translate(-50%, -50%);
-  background: transparent;
-  font-family: "IBM Plex Mono";
-  font-size: 40px;
-  color: dodgerblue;
-  border-radius: 15px;
-}
-
-#settingsMenu {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: transparent;
-  font-family: "IBM Plex Mono";
-  text-align: center;
-  display: none;
-}
-
-#settingsMenu h1 {
-  color: dodgerblue;
-  font-size: 75px;
-  font-weight: 500;
-}
-
-#settingsMenu p {
-  color: rgb(150, 150, 150);
-  font-size: 24px;
-}
-
-#settingsMenu button {
-  color: rgb(150, 150, 150);
-  background: transparent;
-  border: 1px solid rgb(150, 150, 150);
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 24px;
-  font-family: "IBM Plex Mono";
-  cursor: pointer;
-  transition: 0.2s;
-  margin: 5px;
-}
-
-#settingsMenu input {
-  color: rgb(150, 150, 150);
-  background: transparent;
-  border: 1px solid rgb(150, 150, 150);
-  padding: 5px;
-  border-radius: 10px;
-  font-size: 24px;
-  font-family: "IBM Plex Mono";
-  width: 50px;
-  text-align: center;
-}
-
-#resetColors {
-  position: relative;
-  top: 10px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-#settings {
-  font-style: normal;
-  font-family: "Material Icons";
-  color: white;
-  font-size: 50px;
-  cursor: pointer;
-  width: fit-content;
-  height: fit-content;
-  user-select: none;
-}
-
-input[type="color"] {
-  cursor: pointer;
-  height: 40px;
-}
-
-#results {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  background: transparent;
-  font-family: "IBM Plex Mono";
-  text-align: center;
-  display: none;
-}
-
-#results h1 {
-  color: dodgerblue;
-  font-size: 50px;
-  font-weight: 500;
-}
-
-#results p {
-  color: rgb(150, 150, 150);
-  font-size: 24px;
-}
-
-#results button {
-  color: rgb(150, 150, 150);
-  background: transparent;
-  border: 1px solid rgb(150, 150, 150);
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 24px;
-  font-family: "IBM Plex Mono";
-  cursor: pointer;
-  transition: 0.4s;
-  margin: 5px;
-}
-
-#results button:hover {
-  color: white;
-  border-color: white;
-}
-
-#results span {
-  color: white;
-}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div
+      id="settings"
+      onmouseenter="settingsHover()"
+      onmouseleave="settingsUnHover()"
+      onclick="settings()"
+    >
+      settings
+    </div>
+    <div id="timer">0.00</div>
+    <div id="textarea"></div>
+    <div id="settingsMenu">
+      <h1>SETTINGS</h1>
+      <p>
+        Correct Color: <input type="color" id="correctColor" value="#1e90ff" />
+      </p>
+      <p>
+        Incorrect Color:
+        <input type="color" id="incorrectColor" value="#ff6464" />
+      </p>
+      <p>
+        Words:
+        <input type="text" id="numOfWords" value="30" />
+      </p>
+      <br />
+      <button onclick="resetColors()">RESET COLORS</button><br />
+      <button onclick="resetTest()">CREATE TEST</button><br />
+      <button onclick="settings()">DONE</button>
+    </div>
+    <div id="results">
+      <h1>TIME: <span id="time"></span></h1>
+      <h1>ACCURACY: <span id="accuracy"></span></h1>
+      <h1>WPM: <span id="WPM"></span></h1>
+      <h1>RAW WPM: <span id="rawWPM"></span></h1>
+      <button onclick="resetTest()">CREATE NEW TEST</button><br />
+    </div>
+  </body>
+  <script src="main.js"></script>
+</html>
