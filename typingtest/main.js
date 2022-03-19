@@ -2894,8 +2894,10 @@ let incorrectColor = "#ff6464";
 let backspacePressed = false;
 let numberOfWords = 30;
 let errors = 0;
-let time = 0;
 let gameInProgress = false;
+let start;
+let end;
+let time;
 
 document.addEventListener("keydown", onKeyDown);
 
@@ -2932,9 +2934,7 @@ let currentChars = initialChars;
 
 function onKeyDown(e) {
   if (!gameInProgress) {
-    gameInProgress = true;
-    canType = true;
-    setTimer();
+    startGame();
   }
   if (canType == false) return;
   if (
@@ -2978,20 +2978,18 @@ function onKeyDown(e) {
   }
 }
 
-let timeInterval;
+function startGame() {
+  gameInProgress = true;
+  canType = true;
+  startTimer();
+}
 
-function setTimer() {
-  window["time"] = 0;
-  timeInterval = setInterval(() => {
-    if (gameInProgress) {
-      time += 0.02;
-      time = Math.round(time * 100) / 100;
-    }
-  }, 20);
+function startTimer() {
+  start = Date.now();
 }
 
 function stopTimer() {
-  clearInterval(timeInterval);
+  end = Date.now();
 }
 
 setInterval(() => {
@@ -3015,11 +3013,16 @@ function endGame() {
   setTimeout(() => {
     $("#textarea").hide();
     $("#results").show();
-    $("#time").text(time + "s");
+    $("#time").text(calcTime() + "s");
     $("#accuracy").text(calcAccuracy() + "%");
     $("#WPM").text(calcWPM());
     $("#rawWPM").text(calcRawWPM());
   }, 1000);
+}
+
+function calcTime() {
+  time = (Math.round((end - start) * 0.1) / 100);
+  return time;
 }
 
 function calcAccuracy() {
@@ -3105,6 +3108,5 @@ function resetTest() {
   currentChar = 0;
   errors = 0;
   gameInProgress = false;
-  time = 0;
   canType = false;
 }
