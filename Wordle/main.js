@@ -13339,6 +13339,8 @@ function notInWordList() {
 setInterval(() => {
   if (currentRow > 6 && !wordRevealed) {
     wordRevealed = true;
-    alert("The word was: " + wordStr);
+    setTimeout(() => {
+      alert("The word was: " + wordStr);
+    })
   }
 });
