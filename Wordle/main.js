@@ -13341,6 +13341,6 @@ setInterval(() => {
     wordRevealed = true;
     setTimeout(() => {
       alert("The word was: " + wordStr);
-    })
+    }, 200)
   }
 });
