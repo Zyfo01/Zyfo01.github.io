@@ -1,0 +1,274 @@
+/* FONTS */
+/* Varela Round */
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+/* Material Icons */
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+/* Lato */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+/* Ubuntu */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow-x: hidden;
+  background: rgb(30, 30, 30);
+}
+
+button {
+  border: none;
+  background: dodgerblue;
+  color: white;
+  padding: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+i {
+  font-style: normal;
+  font-family: "Material Icons";
+  position: relative;
+  top: 7px;
+}
+
+#introHeader {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  font-family: "Varela Round";
+  color: dodgerblue;
+  font-size: 35px;
+  padding: 25px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+#createNewOrLoadFile {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Varela Round";
+  font-size: 35px;
+  text-align: center;
+  width: 800px;
+  display: block;
+}
+
+#createNewOrLoadFile button {
+  font-family: "Ubuntu";
+  font-size: 35px;
+  margin: 20px;
+  font-weight: 400;
+}
+
+#darkenBackground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  z-index: 1;
+  display: none;
+}
+
+#createNew {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 400px;
+  padding: 20px;
+  border: 2px solid dodgerblue;
+  border-radius: 25px;
+  text-align: center;
+  font-family: "Ubuntu";
+  display: none;
+  background: rgb(30, 30, 30);
+  z-index: 2;
+}
+
+#createNew h1 {
+  border-bottom: 2px solid rgb(130, 130, 130);
+  padding-bottom: 15px;
+  color: dodgerblue;
+}
+
+#createNew p {
+  position: relative;
+  font-size: 20px;
+  top: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: rgb(130, 130, 130);
+}
+
+#createNew input {
+  font-family: "Ubuntu";
+  padding: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 1px solid dodgerblue;
+  background: rgb(30, 30, 30);
+  color: rgb(130, 130, 130);
+}
+
+#createNew select {
+  font-family: "Ubuntu";
+  padding: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 1px solid dodgerblue;
+  background: rgb(30, 30, 30);
+  color: rgb(130, 130, 130);
+}
+
+#createNew button {
+  position: relative;
+  top: 60px;
+  font-family: "Ubuntu";
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+#mainFooter {
+  position: absolute;
+  width: 100vw;
+  height: 300px;
+  background: rgb(50, 50, 50);
+  bottom: 0;
+  text-align: center;
+}
+
+#mainFooter p {
+  position: relative;
+  top: 30px;
+  margin: 20px;
+  font-family: "Ubuntu";
+  font-size: 30px;
+  color: white;
+}
+
+#textArea {
+  position: absolute;
+  top: 100px;
+  height: calc(100% - 400px);
+  font-family: "Lato";
+  font-weight: 300;
+  color: rgb(200, 200, 200);
+  font-size: 20px;
+  padding: 20px;
+}
+
+#textArea age {
+  font-family: "Ubuntu";
+  font-weight: 500;
+  font-size: 22px;
+  color: dodgerblue;
+}
+
+#textArea p {
+  margin-bottom: 30px;
+}
+
+#mainHeader {
+  position: absolute;
+  width: 100vw;
+  height: 100px;
+  background: rgb(50, 50, 50);
+  top: 0;
+}
+
+#mainHeader p {
+  position: relative;
+  top: 30px;
+  font-family: "Ubuntu";
+  font-size: 30px;
+  color: white;
+  left: 20px;
+}
+
+#stats {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+#statsPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 150px;
+  padding: 20px;
+  border: 2px solid dodgerblue;
+  border-radius: 25px;
+  text-align: center;
+  font-family: "Ubuntu";
+  font-size: 30px;
+  color: white;
+  background: rgb(30, 30, 30);
+  z-index: 2;
+  display: none;
+}
+
+#activityBar {
+  position: absolute;
+  background: dodgerblue;
+  bottom: 300px;
+  width: 100%;
+  height: 100px;
+}
+
+#main {
+  display: none;
+}
+
+progress {
+  -webkit-appearance: none;
+}
+
+::-webkit-progress-bar {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+::-webkit-progress-value {
+  border-radius: 8px 0 0 8px;
+  background: dodgerblue;
+}
+
+#loadingScreen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 1000;
+  display: none;
+}
+
+#loadingRotator {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border-top: 5px solid rgb(200, 200, 200);
+  border-right: none;
+}
