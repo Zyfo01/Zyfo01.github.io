@@ -51,6 +51,16 @@ i {
   text-align: center;
 }
 
+#version {
+  position: absolute;
+  right: 0;
+  color: rgb(200, 200, 200);
+  font-family: "Lato";
+  font-weight: 300;
+  font-size: 20px;
+  margin: 5px;
+}
+
 #createNewOrLoadFile {
   position: absolute;
   left: 50%;
