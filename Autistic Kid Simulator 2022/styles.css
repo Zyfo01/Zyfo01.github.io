@@ -29,7 +29,8 @@ button {
 }
 
 button:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: white;
+  color: black;
 }
 
 i {
@@ -95,7 +96,7 @@ i {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
-  height: 400px;
+  height: 475px;
   padding: 20px;
   border: 2px solid dodgerblue;
   border-radius: 25px;
@@ -136,6 +137,7 @@ i {
   padding: 5px;
   font-size: 18px;
   border-radius: 5px;
+  width: 250px;
   border: 1px solid dodgerblue;
   background: rgb(30, 30, 30);
   color: rgb(130, 130, 130);
@@ -143,10 +145,100 @@ i {
 
 #createNew button {
   position: relative;
-  top: 60px;
+  top: 50px;
   font-family: "Ubuntu";
   font-size: 18px;
   padding: 8px;
+  border-radius: 10px;
+}
+
+#createNew p i {
+  font-size: 25px;
+  font-weight: 500;
+  color: dodgerblue;
+  cursor: pointer;
+  position: relative;
+  top: 5px;
+  left: 3px;
+  user-select: none;
+}
+
+#birthplaceInp {
+  cursor: pointer;
+}
+
+#selectBirthplace {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 435px;
+  padding: 20px;
+  border: 2px solid dodgerblue;
+  border-radius: 25px;
+  text-align: center;
+  font-family: "Ubuntu";
+  display: none;
+  background: rgb(30, 30, 30);
+  z-index: 2;
+}
+
+#selectBirthplace h1 {
+  border-bottom: 2px solid rgb(130, 130, 130);
+  padding-bottom: 15px;
+  color: dodgerblue;
+}
+
+#selectBirthplace p {
+  position: relative;
+  font-size: 20px;
+  top: 35px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: rgb(130, 130, 130);
+}
+
+#selectBirthplace input {
+  font-family: "Ubuntu";
+  position: relative;
+  top: 15px;
+  padding: 5px;
+  font-size: 18px;
+  border-radius: 5px;
+  border: 1px solid dodgerblue;
+  background: rgb(30, 30, 30);
+  color: rgb(130, 130, 130);
+}
+
+#selectBirthplace div button {
+  position: relative;
+  font-family: "Ubuntu";
+  font-size: 18px;
+  padding: 8px;
+  border-radius: 10px;
+  margin: 8px;
+  width: 200px;
+}
+
+#countries {
+  height: 310px;
+  position: relative;
+  top: 30px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+#countries::-webkit-scrollbar {
+  width: 10px;
+}
+
+#countries::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#countries::-webkit-scrollbar-thumb {
+  background: dodgerblue;
   border-radius: 10px;
 }
 
