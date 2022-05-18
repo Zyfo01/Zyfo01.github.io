@@ -10,7 +10,7 @@
   </head>
   <body>
     <div id="introHeader"><b>AUTISTIC KID SIMULATOR 2022</b><br /></div>
-    <div id="version">v0.0.1 (alpha)</div>
+    <div id="version">v0.0.2 (alpha)</div>
     <div id="createNewOrLoadFile">
       <button onclick="System.popup('createNew')"><i>add</i> Create New</button>
       <button><i>file_upload</i> Load File</button>
@@ -21,23 +21,38 @@
     <div id="createNew">
       <h1>CREATE NEW LIFE</h1>
       <p>
-        Note: this is for your character in-game. Do not put your real
+        Note: this is for your character in-game. You do not need put your real
         information.
       </p>
-      <p>First Name: <input type="text" id="firstNameInp" /></p>
-      <p>Last Name: <input type="text" id="lastNameInp" /></p>
+      <p>First Name: <input type="text" id="firstNameInp" /><i onclick="randomizeFirstName()">replay</i></p>
+      <p>Last Name: <input type="text" id="lastNameInp" /><i onclick="randomizeLastName()">replay</i></p>
+      <p>Birthplace: <input type="text" id="birthplaceInp" placeholder="Click to select birthplace" onclick="selectBirthplace()"/><i onclick="randomizeBirthplace()">replay</i></p>
+      <p>
+        Gender:
+        <select type="text" id="genderInp">
+          <option value="0">Male</option>
+          <option value="1">Female</option>
+        </select><i onclick="randomizeGender()">replay</i>
+      </p>
       <p>
         Race:
         <select type="text" id="raceInp">
-          <option value="white">White/Caucasian</option>
-          <option value="black">Black/African American</option>
-          <option value="asian">Asian</option>
-          <option value="spansh">Spanish/Hispanic/Latino(a)</option>
-        </select>
+          <option value="0">White/Caucasian</option>
+          <option value="1">Black/African American</option>
+          <option value="2">Asian</option>
+          <option value="3">Spanish/Hispanic/Latino(a)</option>
+        </select><i onclick="randomizeRace()">replay</i>
       </p>
       <p>File/Project Name: <input type="text" id="fileNameInp" /></p>
       <button onclick="createNewLife()">Create</button>
       <button onclick="System.closePopup('createNew')">Back</button>
+    </div>
+
+    <div id="selectBirthplace">
+      <h1>SELECT COUNTRY</h1>
+      <input type="text" placeholder="Search countries" id="countrySearchbar">
+      <div id="countries">
+      </div>
     </div>
 
     <div id="main">
