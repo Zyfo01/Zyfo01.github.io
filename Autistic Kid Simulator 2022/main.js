@@ -111,6 +111,12 @@ const System = {
     }, 150)
   },
 
+  textPopup: (header, body) => {
+    $("#textPopupHeader").html(header);
+    $("#textPopupBody").html(body);
+    System.popup('textPopup');
+  },
+
   killPopups: () => {
     for (let i = 0; i < popups.length; i++) {
       $(popups[i]).hide();
@@ -601,7 +607,7 @@ let happiness,
   race,
   mother,
   father,
-  fileName;
+  age = 0;
 
 
 function createNewLife() {
@@ -610,7 +616,6 @@ function createNewLife() {
     !$("#firstNameInp").val().trim() ||
     $("#lastNameInp").val().trim().includes(" ") ||
     !$("#lastNameInp").val().trim() ||
-    !$("#fileNameInp").val().trim() ||
     !$("#birthplaceInp").val().trim()
   ) {
     alert(
@@ -622,7 +627,6 @@ function createNewLife() {
   System.load();
 firstName = $("#firstNameInp").val().trim();
 lastName = $("#lastNameInp").val().trim();
-fileName = $("#fileNameInp").val().trim();
 gender = parseInt($("#genderInp").val().trim());
 race = parseInt($("#raceInp").val().trim());
 happiness = Mathc.randInt(50, 100);
@@ -646,7 +650,6 @@ System.mainScreen();
 System.loadDone();
 
 ageUpText(
-  0,
   "I was born in " +
     city +
     ", " +
@@ -663,11 +666,15 @@ ageUpText(
 );
 }
 
-function age() {
-  ageUpText();
+function ageUp() {
+  age++;
+  if (age == 1) {
+    System.textPopup("SHIT!", "Your mom threw your autistic ass off a cliff because she regretted giving birth to you.")
+  }
+  ageUpText("My mom threw me off a cliff.");
 }
 
-function ageUpText(age, text) {
+function ageUpText(text) {
   $("#textArea").append(
     "<age>Age: " + age.toString() + "</age><p>" + text + "</p>"
   );
@@ -729,4 +736,15 @@ function randomizeGender() {
 function randomizeRace() {
   race = Mathc.randInt(0, 3)
   $("#raceInp").val(race.toString());
+}
+
+function createRandomLife() {
+  System.load()
+  randomizeGender();
+  randomizeFirstName();
+  randomizeLastName();
+  randomizeBirthplace();
+  randomizeRace();
+  createNewLife();
+  System.loadDone();
 }
