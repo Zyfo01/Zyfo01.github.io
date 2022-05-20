@@ -43,8 +43,8 @@
           <option value="3">Spanish/Hispanic/Latino(a)</option>
         </select><i onclick="randomizeRace()">replay</i>
       </p>
-      <p>File/Project Name: <input type="text" id="fileNameInp" /></p>
       <button onclick="createNewLife()">Create</button>
+      <button onclick="createRandomLife()">Create Random Life</button>
       <button onclick="System.closePopup('createNew')">Back</button>
     </div>
 
@@ -54,7 +54,6 @@
       <div id="countries">
       </div>
     </div>
-
     <div id="main">
       <div id="mainHeader">
         <p id="name"></p>
@@ -62,7 +61,15 @@
       </div>
       <div id="textArea">
       </div>
-      <div id="activityBar"></div>
+      <div id="activityBar">
+        <button id="ageUp" onclick="ageUp()"><i>keyboard_double_arrow_up</i></button>
+      </div>
+
+      <div id="textPopup">
+        <h1 id="textPopupHeader"></h1>
+        <p id="textPopupBody"></p>
+      </div>
+
       <div id="mainFooter">
         <div id="stats" onclick="System.popup('statsPopup')">
           <p id="happiness">
