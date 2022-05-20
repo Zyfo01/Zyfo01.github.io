@@ -96,7 +96,7 @@ i {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 500px;
-  height: 475px;
+  height: 450px;
   padding: 20px;
   border: 2px solid dodgerblue;
   border-radius: 25px;
@@ -242,6 +242,38 @@ i {
   border-radius: 10px;
 }
 
+#textPopup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  box-sizing: border-box;
+  height: fit-content;
+  padding: 20px;
+  border: 2px solid dodgerblue;
+  border-radius: 25px;
+  text-align: center;
+  font-family: "Ubuntu";
+  background: rgb(30, 30, 30);
+  z-index: 2;
+  display: none;
+}
+
+#textPopup h1 {
+  color: dodgerblue;
+  font-size: 40px;
+}
+
+#textPopup p {
+  position: relative;
+  top: 20px;
+  color: rgb(200,200,200);
+  font-family: "Ubuntu";
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
 #mainFooter {
   position: absolute;
   width: 100vw;
@@ -263,12 +295,15 @@ i {
 #textArea {
   position: absolute;
   top: 100px;
-  height: calc(100% - 400px);
+  width: 100%;
+  height: calc(100vh - 520px);
   font-family: "Lato";
   font-weight: 300;
   color: rgb(200, 200, 200);
   font-size: 20px;
   padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 #textArea age {
@@ -333,6 +368,29 @@ i {
   bottom: 300px;
   width: 100%;
   height: 100px;
+  overflow: visible;
+}
+
+#ageUp {
+  position: relative;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 65px;
+  width: 130px;
+  height: 130px;
+  background: rgb(62, 191, 255);
+  border: 4px solid white;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+#ageUp:hover {
+  width: 140px;
+  height: 140px;
+  top: -20px;
+  font-size: 75px;
+  color: white;
 }
 
 #main {
@@ -358,7 +416,7 @@ progress {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: white;
+  background: rgb(30,30,30);
   z-index: 1000;
   display: none;
 }
@@ -373,4 +431,52 @@ progress {
   border-radius: 50%;
   border-top: 5px solid rgb(200, 200, 200);
   border-right: none;
+}
+
+@media (max-width: 1600px) {
+  #mainHeader {
+    height: 80px;
+  }
+
+  #mainHeader p {
+    font-size: 25px;
+  }
+
+  #activityBar {
+    height: 80px;
+    bottom: 240px;
+  }
+
+  #ageUp {
+    height: 110px;
+    width: 110px;
+    font-size: 58px;
+  }
+
+  #ageUp:hover {
+    height: 120px;
+    width: 120px;
+    top: -20px;
+    font-size: 68px;
+  }
+
+  #mainFooter {
+    height: 240px;
+  }
+
+  #stats p {
+    top: 23px;
+    font-size: 20px;
+  }
+
+  progress {
+    height: 20px;
+    width: 200px;
+  }
+
+  #textArea {
+    top: 80px;
+    height: calc(100vh - 420px);
+  }
+
 }
