@@ -167,7 +167,7 @@ const System = {
     let determinant = Mathc.randInt(0, 100);
     if (determinant <= chance1) {
       event1();
-    } else if (determinant > chance1 && determant <= chance2) {
+    } else if (determinant > chance1 && determinant <= chance1 + chance2) {
       event2();
     } else {
       event3();
@@ -191,9 +191,9 @@ const System = {
     let determinant = Mathc.randInt(0, 100);
     if (determinant <= chance1) {
       event1();
-    } else if (determinant > chance1 && determant <= chance2) {
+    } else if (determinant > chance1 && determinant <= chance1 + chance2) {
       event2();
-    } else if (determinant > chance2 && determant <= chance3) {
+    } else if (determinant > chance1 + chance2 && determinant <= chance1 + chance2 +chance3) {
       event3();
     } else {
       event4();
@@ -608,76 +608,63 @@ let happiness,
   mother,
   father,
   age = 0;
+  alive = false;
 
 
 function createNewLife() {
   if (
-    $("#firstNameInp").val().trim().includes(" ") ||
     !$("#firstNameInp").val().trim() ||
     $("#lastNameInp").val().trim().includes(" ") ||
     !$("#lastNameInp").val().trim() ||
     !$("#birthplaceInp").val().trim()
   ) {
     alert(
-      "First and last name must not be blank or have spaces, file name and birthplace must not be blank."
+      "Last name must not be blank or have spaces, first name, file name, and birthplace must not be blank."
     );
     return;
   }
 
   System.load();
-firstName = $("#firstNameInp").val().trim();
-lastName = $("#lastNameInp").val().trim();
-gender = parseInt($("#genderInp").val().trim());
-race = parseInt($("#raceInp").val().trim());
-happiness = Mathc.randInt(50, 100);
-health = Mathc.randInt(50, 100);
-intelligence = Mathc.randInt(25, 50);
-looks = Mathc.randInt(40, 75);
-mother =
-  WorldData.firstNames[1][
-    Mathc.randInt(0, WorldData.firstNames[1].length - 1)
-  ] +
-  " " +
-  lastName;
-father =
-  WorldData.firstNames[0][
-    Mathc.randInt(0, WorldData.firstNames[0].length - 1)
-  ] +
-  " " +
-  lastName;
-System.updateProperties();
-System.mainScreen();
-System.loadDone();
-
-ageUpText(
-  "I was born in " +
-    city +
-    ", " +
-    country +
-    ". My name is " +
-    firstName +
+  firstName = $("#firstNameInp").val().trim();
+  lastName = $("#lastNameInp").val().trim();
+  gender = parseInt($("#genderInp").val().trim());
+  race = parseInt($("#raceInp").val().trim());
+  happiness = Mathc.randInt(50, 100);
+  health = Mathc.randInt(50, 100);
+  intelligence = Mathc.randInt(25, 50);
+  looks = Mathc.randInt(40, 75);
+  mother =
+    WorldData.firstNames[1][
+      Mathc.randInt(0, WorldData.firstNames[1].length - 1)
+    ] +
     " " +
-    lastName +
-    ". My mother is " +
-    mother +
-    " and my father is " +
-    father +
-    "."
-);
-}
+    lastName;
+  father =
+    WorldData.firstNames[0][
+      Mathc.randInt(0, WorldData.firstNames[0].length - 1)
+    ] +
+    " " +
+    lastName;
+  System.updateProperties();
+  System.mainScreen();
+  System.loadDone();
 
-function ageUp() {
-  age++;
-  if (age == 1) {
-    System.textPopup("SHIT!", "Your mom threw your autistic ass off a cliff because she regretted giving birth to you.")
-  }
-  ageUpText("My mom threw me off a cliff.");
-}
-
-function ageUpText(text) {
-  $("#textArea").append(
-    "<age>Age: " + age.toString() + "</age><p>" + text + "</p>"
+  ageUpText(
+    "I was born in " +
+      city +
+      ", " +
+      country +
+      ". My name is " +
+      firstName +
+      " " +
+      lastName +
+      ". My mother is " +
+      mother +
+      " and my father is " +
+      father +
+      "."
   );
+  alive = true;
 }
 
 function selectBirthplace() {
@@ -747,4 +734,239 @@ function createRandomLife() {
   randomizeRace();
   createNewLife();
   System.loadDone();
+}
+
+function ageUp() {
+  if (!alive) return;
+  age++;
+  triggerAgeEvent();
+  document.getElementById("textArea").scrollBy({top: 100, behavior: "smooth"});
+}
+
+function ageUpText(text) {
+  $("#textArea").append(
+    "<age>Age: " + age.toString() + "</age><p>" + text + "</p>"
+  );
+}
+
+let eventVars = {
+  firstWords: false,
+  primarySchool: false,
+  inOrphanage: false,
+  vaccinated: false,
+}
+
+function triggerAgeEvent() {
+
+  if (age == 1) {
+    let text = "";
+    System.randEvent4(() => {
+      System.randEvent4(() => {
+        System.textPopup("Well damn", "Your mom threw you off a cliff because she decided she couldn't live with an autistic son, and it was either her or you.");
+        text += "My mom threw me off a cliff. ";
+      }, () => {
+        System.textPopup("What the actual fuck", "Your crazy dad killed you with an axe.");
+        text += "My dad killed me with an axe. ";
+      }, () => {
+        System.textPopup("Why me?", "Your parents killed you in your sleep.");
+        text += "My parents killed me in my sleep. ";
+      }, () => {
+        System.textPopup("Short-lived", "You died due to a severe case of autism.");
+        text += "I passed away from my severe autism. ";
+      }, 20, 20, 30, 30);
+      alive = false;
+    }, () => {
+      System.textPopup("What did I expect", "Your parents abandoned you. You were found and sent to an orphanage.");
+      text += "I was sent to an orphanage. ";
+      inOrphanage = true;
+    }, () => {
+      System.randEvent4(() => {
+        text += "I said my first word! It was: \"daddy\". ";
+      }, () => {
+        text += "I said my first word! It was: \"mommy\". ";
+      }, () => {
+        text += "I said my first word! It was: \"ball\". ";
+      }, () => {
+        text += "I said my first word! It was: \"bye\". ";
+      }, 27, 26, 24, 23);
+      eventVars.firstWords = true;
+    }, () => {},
+    5, 15, 40, 40);
+    ageUpText(text);
+  }
+  
+  else if (age == 2) {
+    let text = "";
+    System.randEvent4(() => {
+      System.randEvent4(() => {
+        System.textPopup("Well damn", "Your mom threw you off a cliff because she decided she couldn't live with an autistic son, and it was either her or you.");
+        text += "My mom threw me off a cliff. ";
+      }, () => {
+        System.textPopup("What the actual fuck", "Your crazy dad killed you with an axe.");
+        text += "My dad killed me with an axe. ";
+      }, () => {
+        System.textPopup("Why me?", "Your parents killed you in your sleep.");
+        text += "My parents killed me in my sleep. ";
+      }, () => {
+        System.textPopup("Short-lived", "You died due to a severe case of autism.");
+        text += "I passed away from my severe autism. ";
+      }, 20, 20, 30, 30);
+      alive = false;
+    }, () => {
+      if (!inOrphanage) {
+        System.textPopup("What did I expect", "Your parents abandoned you. You were found and sent to an orphanage.");
+        text += "I was sent to an orphanage. ";
+        inOrphanage = true;
+      }
+    }, () => {
+      if (!eventVars.firstWords) {
+        System.randEvent4(() => {
+          text += "I said my first word! It was: \"daddy\". ";
+        }, () => {
+          text += "I said my first word! It was: \"mommy\". ";
+        }, () => {
+          text += "I said my first word! It was: \"ball\". ";
+        }, () => {
+          text += "I said my first word! It was: \"Bye\". ";
+        }, 27, 26, 24, 23);
+        eventVars.firstWords = true;
+      }
+    }, () => {},
+    3, 7, 50, 40);
+    ageUpText(text);
+  }
+  
+  else if (age == 3) {
+    let text = ""
+    if (!eventVars.firstWords) {
+      System.randEvent4(() => {
+        text += "I said my first word! It was: \"daddy\". ";
+      }, () => {
+        text += "I said my first word! It was: \"mommy\". ";
+      }, () => {
+        text += "I said my first word! It was: \"ball\". ";
+      }, () => {
+        text += "I said my first word! It was: \"Bye\". ";
+      }, 27, 26, 24, 23);
+      eventVars.firstWords = true;
+    };
+    System.randEvent4(() => {
+      System.randEvent4(() => {
+        System.textPopup("Well damn", "Your mom threw you off a cliff because she decided she couldn't live with an autistic son, and it was either her or you.");
+        text += "My mom threw me off a cliff.  ";
+      }, () => {
+        System.textPopup("What the actual fuck", "Your crazy dad killed you with an axe.");
+        text += "My dad killed me with an axe. ";
+      }, () => {
+        System.textPopup("Why me?", "Your parents killed you in your sleep.");
+        text += "My parents killed me in my sleep. ";
+      }, () => {
+        System.textPopup("Short-lived", "You died due to a severe case of autism.");
+        text += "I passed away from my severe autism. ";
+      }, 20, 20, 30, 30);
+      alive = false;
+    }, () => {
+      if (!inOrphanage) {
+        System.textPopup("What did I expect", "Your parents abandoned you. You were found and sent to an orphanage.");
+        text += "I was sent to an ophanage. ";
+        inOrphanage = true;
+      }
+    }, () => {
+      if (!inOrphanage) {
+        System.textPopup("Vaccination", "Your parents took you to get vaccinated.");
+        text += "My parents took me to get vaccinated. ";
+      }
+    }, () => {},
+    1, 4, 75, 20);
+    ageUpText(text);
+  } 
+  
+  else if (age == 4) {
+    let text = "";
+    System.randEvent2(() => {
+      if (!inOrphanage) {
+        System.textPopup("Vaccination", "Your parents took you to get vaccinated.");
+        text += "My parents took me to get vaccinated. ";
+      }
+    }, () => {}, 25, 75);
+    System.randEvent3(() => {
+      System.randEvent4(() => {
+        System.textPopup("Well damn", "Your mom threw you off a cliff because she decided she couldn't live with an autistic son, and it was either her or you.");
+        text += "My mom threw me off a cliff.  ";
+      }, () => {
+        System.textPopup("What the actual fuck", "Your crazy dad killed you with an axe.");
+        text += "My dad killed me with an axe. ";
+      }, () => {
+        System.textPopup("Why me?", "Your parents killed you in your sleep.");
+        text += "My parents killed me in my sleep. ";
+      }, () => {
+        System.textPopup("Short-lived", "You died due to a severe case of autism.");
+        text += "I passed away from my severe autism. ";
+      }, 20, 20, 30, 30);
+      alive = false;
+    }, () => {
+      if (!inOrphanage) {
+        System.textPopup("What did I expect", "Your parents abandoned you. You were found and sent to an orphanage.");
+        text += "I was sent to an ophanage. ";
+        inOrphanage = true;
+      }
+    }, () => {}, 1, 4, 95)
+    ageUpText(text);
+  } 
+  
+  else if (age == 5) {
+    let text = "";
+    System.randEvent2(() => {
+      System.textPopup("Primary School", "You started first grade.");
+      text += "I started primary school. ";
+      primarySchool = true;
+    }, () => {}, 80, 20)
+    ageUpText(text);
+  } 
+
+  else if (age == 6) {
+    let text = "";
+    if (!primarySchool) {
+      System.textPopup("Primary School", "You started first grade.");
+      text += "I started primary school. ";
+      primarySchool = true;
+    }
+    ageUpText(text);
+  }
+
+
+
+  else if (age >= 80 && age < 90) {
+    let text = ""
+    System.randEvent2(() => {
+      System.textPopup("The time has come", "You died of natural causes at age " + age + ".");
+      text += "I died of natural causes. ";
+      alive = false;
+    }, () => {}, 20, 80);
+    ageUpText(text);
+  }
+
+  else if (age >= 90 && age < 100) {
+    let text = ""
+    System.randEvent2(() => {
+      System.textPopup("The time has come", "You died of natural causes at age " + age + ".");
+      text += "I died of natural causes. ";
+      alive = false;
+    }, () => {}, 50, 50);
+    ageUpText(text);
+  }
+
+  else if (age >= 100) {
+    let text = ""
+    System.randEvent2(() => {
+      System.textPopup("The time has come", "You died of natural causes at age " + age + ".");
+      text += "I died of natural causes. ";
+      alive = false;
+    }, () => {}, 75, 25);
+    ageUpText(text);
+  }
+  
+  else {
+    ageUpText("");
+  }
 }
