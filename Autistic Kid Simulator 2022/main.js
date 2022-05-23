@@ -19,6 +19,8 @@ const System = {
     $("#looksValue").text(looks + "%");
 
     $("#name").text(firstName + " " + lastName);
+
+    $("#networth").text("$" + networth);
   },
 
   hideAllPages: () => {
@@ -607,7 +609,8 @@ let happiness,
   race,
   mother,
   father,
-  age = 0;
+  age = 0,
+  networth = 0;
   alive = false;
 
 
@@ -921,17 +924,17 @@ function triggerAgeEvent() {
     System.randEvent2(() => {
       System.textPopup("Primary School", "You started first grade.");
       text += "I started primary school. ";
-      primarySchool = true;
+      eventVars.primarySchool = true;
     }, () => {}, 80, 20)
     ageUpText(text);
   } 
 
   else if (age == 6) {
     let text = "";
-    if (!primarySchool) {
+    if (!eventVars.primarySchool) {
       System.textPopup("Primary School", "You started first grade.");
       text += "I started primary school. ";
-      primarySchool = true;
+      eventVars.primarySchool = true;
     }
     ageUpText(text);
   }
