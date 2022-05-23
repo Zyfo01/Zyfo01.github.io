@@ -778,7 +778,7 @@ function triggerAgeEvent() {
     }, () => {
       System.textPopup("What did I expect", "Your parents abandoned you. You were found and sent to an orphanage.");
       text += "I was sent to an orphanage. ";
-      inOrphanage = true;
+      eventVars.inOrphanage = true;
     }, () => {
       System.randEvent4(() => {
         text += "I said my first word! It was: \"daddy\". ";
@@ -813,10 +813,10 @@ function triggerAgeEvent() {
       }, 20, 20, 30, 30);
       alive = false;
     }, () => {
-      if (!inOrphanage) {
+      if (!eventVars.inOrphanage) {
         System.textPopup("What did I expect", "Your parents abandoned you. You were found and sent to an orphanage.");
         text += "I was sent to an orphanage. ";
-        inOrphanage = true;
+        eventVars.inOrphanage = true;
       }
     }, () => {
       if (!eventVars.firstWords) {
@@ -866,15 +866,16 @@ function triggerAgeEvent() {
       }, 20, 20, 30, 30);
       alive = false;
     }, () => {
-      if (!inOrphanage) {
+      if (!eventVars.inOrphanage) {
         System.textPopup("What did I expect", "Your parents abandoned you. You were found and sent to an orphanage.");
         text += "I was sent to an ophanage. ";
-        inOrphanage = true;
+        eventVars.inOrphanage = true;
       }
     }, () => {
-      if (!inOrphanage) {
+      if (!eventVars.inOrphanage) {
         System.textPopup("Vaccination", "Your parents took you to get vaccinated.");
         text += "My parents took me to get vaccinated. ";
+        eventVars.vaccinated = true;
       }
     }, () => {},
     1, 4, 75, 20);
@@ -884,9 +885,10 @@ function triggerAgeEvent() {
   else if (age == 4) {
     let text = "";
     System.randEvent2(() => {
-      if (!inOrphanage) {
+      if (!eventVars.inOrphanage && eventVars.vaccinated == false) {
         System.textPopup("Vaccination", "Your parents took you to get vaccinated.");
         text += "My parents took me to get vaccinated. ";
+        eventVars.vaccinated = true;
       }
     }, () => {}, 25, 75);
     System.randEvent3(() => {
@@ -905,10 +907,10 @@ function triggerAgeEvent() {
       }, 20, 20, 30, 30);
       alive = false;
     }, () => {
-      if (!inOrphanage) {
+      if (!eventVars.inOrphanage) {
         System.textPopup("What did I expect", "Your parents abandoned you. You were found and sent to an orphanage.");
         text += "I was sent to an ophanage. ";
-        inOrphanage = true;
+        eventVars.inOrphanage = true;
       }
     }, () => {}, 1, 4, 95)
     ageUpText(text);
