@@ -334,6 +334,13 @@ i {
   left: 20px;
 }
 
+#networth {
+  float: right;
+  position: relative;
+  right: 40px;
+  color: greenyellow;
+}
+
 #stats {
   position: absolute;
   left: 50%;
@@ -440,6 +447,8 @@ progress {
 
   #mainHeader p {
     font-size: 25px;
+    position: relative;
+    top: 25px;
   }
 
   #activityBar {
