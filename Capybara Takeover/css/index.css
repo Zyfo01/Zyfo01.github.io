@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  overflow: hidden;
+}
+
+#background {
+  width: 100vw;
+  height: 100vh;
+}
+
+h1 {
+  position: absolute;
+  font-family: "Roboto";
+  text-align: center;
+  color: rgb(223, 242, 254);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5vh;
+  text-shadow: 0 0 15px rgb(0, 170, 255), 0 0 25px rgb(0, 70, 255);
+  opacity: 0;
+}
